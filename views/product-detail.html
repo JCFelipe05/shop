@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/output.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chivo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body>
+    <header class="sticky top-0 z-1000">
+        <nav class="navbar py-4 px-0">
+            <div class="nav-container flex justify-between items-center py-0 px-4 relative">
+                <div class="logo w-auto">
+                    <img class="w-full h-auto block" src="../assets/img/logo.png" alt="Paracordial">
+                </div>
+                <button class="menu-toggle flex flex-col gap-1.25 bg-none cursor-pointer border-none p-2 z-1001" id="menuToggle" aria-label="Abrir menú">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-menu fixed top-18 -left-full w-full py-6 px-0" id="navMenu">
+                    <li><a href="/index.html" class="active">Inicio</a></li>
+                    <li><a href="#">Productos</a></li>
+                    <li><a href="#">Acerca de</a></li>
+                    <li><a href="#">Contacto</a></li>
+                </ul>
+                <div class="nav-icons flex items-center gap-4">
+                    <a href="#" class="icon">
+                        <img src="../assets/icons/personal.png" alt="">
+                    </a>
+                    <a href="#" class="icon">
+                        <img src="../assets/icons/buscar.png" alt="">
+                    </a>
+                    <a href="#" class="icon">
+                        <img src="../assets/icons/cart.png" alt="">
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="flex items-center justify-center">
+        <div class="body-container w-9/10 flex flex-col items-center justify-center mt-5 md:flex-row md:justify-between md:bg-[#507335] md:border md:rounded-4xl">
+            <img src="/assets/img/pulsera.jpg" alt="" class="w-full h-auto rounded-4xl md:mr-4">
+
+            <div class="desc flex-col items-center md:mr-4">
+                <div class="desc-title w-9/10">
+                    <h1>Pulsera de paracord:</h1>
+                </div>
+                <div class="desc-text border-b border-t ">
+                    <p>Texto descriptivo del producto. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cupiditate repudiandae perspiciatis corporis mollitia nam animi voluptatem ipsa asperiores quia eveniet.</p>
+                </div>
+            </div>
+            <div class="info py-1.5 px-2.5 mt-2.5 w-9/10 flex flex-col items-center justify-center rounded-2xl md:h-full md:mr-4">
+                <p class="w-full">Precio: 9€</p>
+                <p class="w-full">Stock: 200</p>
+                <button class="boton w-28 p-1 rounded-2xl border border-green-950 cursor-pointer">Añadir al carrito</button>
+            </div>
+        </div>
+    </main>
+
+    <footer class="pt-12 px-0 pb-6 mt-12 mb-0">
+        <div class="container w-full max-w-[1200px] my-0 mx-auto py-0 px-4">
+            <div class="footer-content flex items-center justify-between">
+                <div class="footer-section">
+                    <h4>Navegación</h4>
+                </div>
+                <div class="footer-section">
+                    <h4>Información</h4>
+                </div>
+                <div class="footer-section">
+                    <h4>Contacto</h4>
+                </div>
+            </div>
+            <div class="footer-bottom text-center pt-6 text-sm backdrop-opacity-80">
+                <p>&copy; 2025 Paracordial. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+</html>

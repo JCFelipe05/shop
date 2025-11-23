@@ -1,0 +1,136 @@
+@import "tailwindcss";
+
+:root {
+  --chivo: 'Chivo', sans-serif;
+  --color_fuente: #483519;
+  --fondo: #F3F9D2;
+  --primario: #6F7C12;
+  --acento: #ED7D3A;
+  --contenedores: #CBEAA6;
+}
+
+@layer components {
+  body {
+    @apply min-h-screen leading-relaxed;
+    font-family: var(--chivo);
+    background-color: var(--fondo);
+    color: var(--color_fuente);
+  }
+
+  header {
+    @apply shadow-md;
+    background-color: var(--primario);
+  }
+
+  .logo img {
+    @apply max-h-24;
+  }
+
+  .menu-toggle span {
+    @apply block;
+    width: 25px;
+    height: 2px;
+    background-color: var(--fondo);
+  }
+
+  .nav-menu {
+    @apply shadow-lg;
+    background-color: var(--primario);
+  }
+
+  .nav-menu.active {
+    @apply left-0;
+  }
+
+  .nav-menu li {
+    @apply p-0;
+  }
+
+  .nav-menu a {
+    @apply block px-6 py-4 font-medium;
+    color: var(--fondo);
+  }
+
+  .nav-menu a:hover {
+    background-color: #5a6510;
+  }
+
+  .nav-menu a.active {
+    background-color: var(--acento);
+    color: var(--fondo);
+  }
+
+  .icon {
+    @apply p-2 rounded-full;
+  }
+
+  .icon:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  footer {
+    @apply text-white;
+    background-color: var(--primario);
+    color: var(--fondo);
+  }
+
+  .footer-section h4 {
+    @apply text-lg mb-4;
+    color: var(--fondo);
+  }
+
+  .footer-bottom {
+    @apply border-t;
+    border-color: rgba(243, 249, 210, 0.2);
+  }
+
+  .info {
+    background-color: var(--contenedores);
+  }
+
+  .boton {
+    @apply text-white;
+    background-color: var(--primario);
+  }
+
+  .boton:hover {
+    background-color: #5a6510;
+  }
+
+  .desc {
+    color: var(--color_fuente);
+  }
+
+  .desc-text {
+    font-family: var(--chivo);
+    color: var(--color_fuente);
+  }
+}
+@media (min-width: 768px) {
+    .desc-text p {
+        color: var(--fondo);
+    }
+    .desc {
+        color: var(--fondo);
+    }
+    .menu-toggle {
+        display: none;
+    }
+    
+    .nav-menu {
+        position: static;
+        display: flex;
+        width: auto;
+        padding: 0;
+        box-shadow: none;
+    }
+    
+    .nav-menu li {
+        display: inline-block;
+    }
+    
+    .nav-menu a {
+        padding: 16px 24px;
+        border-radius: 8px;
+    }
+}
