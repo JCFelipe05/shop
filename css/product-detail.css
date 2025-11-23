@@ -15,7 +15,7 @@
     font-family: var(--chivo);
     background-color: var(--fondo);
     color: var(--color_fuente);
-  }
+  } 
 
   header {
     @apply shadow-md;
