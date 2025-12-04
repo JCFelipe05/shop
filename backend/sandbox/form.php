@@ -9,8 +9,8 @@
 
     <p><b>Start typing a name in the input field below:</b></p>
     <form action="">
-        <label for="fname">First name:</label>
-        <input type="text" id="fname" name="fname" onkeyup="showHint(this.value)">
+        <label for="productname">First name:</label>
+        <input type="text" id="productname" name="productname" onkeyup="showHint(this.value)">
     </form>
     <p>Suggestions: </p>
     <div id="txtHint"></div>
@@ -28,7 +28,7 @@
                         document.getElementById("txtHint").innerHTML = this.responseText;
                     }
                 };
-                xmlhttp.open("GET", "db.php?productname=" + str, true);
+                xmlhttp.open("GET", "/student008/shop/backend/sandbox/db.php?productname=" + str, true);
                 xmlhttp.send();
             }
         }

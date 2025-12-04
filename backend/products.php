@@ -2,8 +2,9 @@
 // Configuración de conexión
 $root_dir = $_SERVER['DOCUMENT_ROOT'];
 include($root_dir . '/student008/shop/backend/config/connection.php');
+include($root_dir . '/student008/shop/backend/header.php');
 
-$sql = "SELECT nombre_producto, descripcion, precio FROM 008_producto";
+$sql = "SELECT id_producto, nombre_producto, descripcion, precio FROM 008_producto";
 
 $result = mysqli_query($conn, $sql);
 
@@ -25,6 +26,7 @@ if($result) {
 
     <h1>Productos hechos con Paracord</h1>
     <br>
+    <button><a href="/student008/shop/backend/forms/form_product_insert.php">Añadir producto</a></button>
     <div class="contenedor-productos">
         <?php foreach ($products as $product): ?>
             <div class="producto">
@@ -32,9 +34,23 @@ if($result) {
                 <p class="detalle"><?= htmlspecialchars($product['descripcion']) ?></p>
                 <p class="precio"><?= number_format($product['precio'], 2) ?> €</p>
             </div>
+            <button class="btn btn-secondary btn-small"><a href="/student008/shop/backend/forms/form_product_update_call.php">Update</a></button>
+            <button>
+                <a href="/student008/shop/backend/db/db_product_delete.php?id=<?= $product['id_producto'] ?>">
+                    Eliminar
+                </a>
+            </button>
+            <button>
+                <a href="/student008/shop/backend/cart_insert.php?id=<?= $product['id_producto']?>">
+                    Añadir al carrito
+                </a>
+            </button>
             <br>
         <?php endforeach; ?>
     </div>
 
 </body>
 </html>
+<?php 
+    mysqli_close($conn);
+?>

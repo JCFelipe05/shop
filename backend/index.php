@@ -9,11 +9,10 @@
     <?php 
         $root_dir = $_SERVER['DOCUMENT_ROOT'];
         include($root_dir . '/student008/shop/backend/header.php');
-        include($root_dir . '/student008/shop/backend/products.php')
     ?>
     <main>
-        
+        <h1>Bienvenido a Paracordial!</h1>
+        <p>Tu tienda online de productos hechos con paracord.</p>
     </main>
-    <?php include($root_dir . '/student008/shop/backend/footer.php'); ?>
 </body>
 </html>

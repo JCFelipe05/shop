@@ -13,13 +13,13 @@
     $description = $_POST['desc'];
     $price = $_POST['price'];
 
-    $sql = "UPDATE producto SET nombre_producto='$product_name', descripcion='$description', color='$color', medida='$size', precio='$price' WHERE id_producto=$id";
+    $sql = "UPDATE 008_producto SET nombre_producto='$product_name', descripcion='$description', color='$color', medida='$size', precio='$price' WHERE id_producto=$id";
 
     if (mysqli_query($conn, $sql)) {
         echo "Registro actualizado correctamente.";
     } else {
         echo "Error: Conexión fallida.";
     }
-
-    include($root_dir . '/student008/shop/backend/footer.php');
+    
+    mysqli_close($conn);
 ?>

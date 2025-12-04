@@ -5,9 +5,9 @@
     
     print_r ($_POST);
     
-    $product_id = $_POST['id'];
+    $product_id = $_GET['id'];
 
-    $sql = "DELETE FROM producto WHERE id_producto='$product_id'";
+    $sql = "DELETE FROM 008_producto WHERE id_producto='$product_id'";
     if (mysqli_query($conn, $sql)) {
         echo "Registro eliminado correctamente.";
     } else {
@@ -15,5 +15,4 @@
     }
 
     mysqli_close($conn);
-    include($root_dir . '/student008/shop/backend/footer.php');
 ?>

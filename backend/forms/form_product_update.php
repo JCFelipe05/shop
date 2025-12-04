@@ -26,4 +26,3 @@
             <input type="submit" value="Enviar">
         </form>
     </div>
-<?php include($root_dir . '/student008/shop/backend/footer.php'); ?>

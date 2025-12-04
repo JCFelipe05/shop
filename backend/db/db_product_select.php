@@ -13,5 +13,5 @@
     $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
     print_r($rows);
 
-    include($root_dir . '/student008/shop/backend/footer.php');
+    mysqli_close($conn);
 ?>

@@ -19,6 +19,5 @@
     } else {
         echo "Error: Conexión fallida.";
     }
-
-    include($root_dir . '/student008/shop/backend/footer.php');
+    mysqli_close($conn);
 ?>

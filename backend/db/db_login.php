@@ -3,19 +3,39 @@
     $root_dir = $_SERVER['DOCUMENT_ROOT'];
     include($root_dir . '/student008/shop/backend/config/connection.php');
     include($root_dir . '/student008/shop/backend/header.php');
-    
+?>
+<?php
     print_r ($_POST);
     
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    $sql = "SELECT * FROM producto WHERE username ='$username' AND password ='$password'";
-    if (mysqli_query($conn, $sql) != null) {
-        header("Location: /student008/shop/backend/index.php");
+    $sql = "SELECT * FROM 008_cliente WHERE nombre ='$username' AND password ='$password'";
+    $result = mysqli_query($conn, $sql);
+
+    if ($result) {
+        if (mysqli_num_rows($result) > 0) {
+            $user = mysqli_fetch_assoc($result);
+
+            $_SESSION['user_id'] = $user['id_cliente'];
+            $_SESSION['username'] = $user['nombre'];
+            $_SESSION['role'] = $user['tipo'];
+
+            echo "¡Bienvenido " . htmlspecialchars($user['nombre']) . "!";
+
+            if($_SESSION['role'] == 'admin'){
+                header("Location: /student008/shop/backend/index.php");
+            } else {
+                header("Location: /student008/shop/index.html");
+            }
+            exit();
+        } else {
+            echo "Nombre de usuario o contraseña incorrectos.";
+        }
     } else {
-        echo "Error al verificar usuario.";
+        echo "Error al hacer la consulta: " . mysqli_error($conn);
     }
 
     mysqli_close($conn);
-    include($root_dir . '/student008/shop/backend/footer.php');
 ?>
+<?php include($root_dir . '/student008/shop/backend/footer.php'); ?>
