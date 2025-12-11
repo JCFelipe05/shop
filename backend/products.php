@@ -48,9 +48,9 @@ if($result) {
             <br>
         <?php endforeach; ?>
     </div>
-
 </body>
 </html>
 <?php 
     mysqli_close($conn);
+    include($root_dir . '/student008/shop/backend/footer.php');
 ?>

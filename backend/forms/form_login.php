@@ -3,7 +3,7 @@
     $root_dir = $_SERVER['DOCUMENT_ROOT'];
     include($root_dir . '/student008/shop/backend/header.php');
 ?>
-<form action="../db/db_login.php" method="post">
+<form action="../db/db_login.php" method="POST">
     <label for="username">Usuario:</label>
     <input type="text" id="username" name="username" required>
     <br>

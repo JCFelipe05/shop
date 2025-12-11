@@ -3,9 +3,18 @@
     $root_dir = $_SERVER['DOCUMENT_ROOT'];
     include($root_dir . '/student008/shop/backend/config/connection.php');
     include($root_dir . '/student008/shop/backend/header.php');
+
+    if (isset($_SESSION['user_id'])) {
+        // Verifica el rol por si el admin debe ir a backend/index.php
+        if ($_SESSION['role'] == 'admin') {
+            header("Location: /student008/shop/backend/index.php");
+        } else {
+            header("Location: /student008/shop/index.html");
+        }
+        exit(); // Detenemos la ejecución del resto del script
+    }
 ?>
 <?php
-    print_r ($_POST);
     
     $username = $_POST['username'];
     $password = $_POST['password'];

@@ -1,14 +1,14 @@
 <?php
     // Conexión a la base de datos
-    // $servername = "remotehost.es";
-    // $username = "dwess1234";
-    // $password = "usertest1234.";
-    // $dbname = "dwesdatabase";
+    $servername = "remotehost.es";
+    $username = "dwess1234";
+    $password = "Usertest1234.";
+    $dbname = "dwesdatabase";
 
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "paracordial_db";
+    // $servername = "localhost";
+    // $username = "root";
+    // $password = "";
+    // $dbname = "paracordial_db";
 
     $conn = mysqli_connect($servername, $username, $password, $dbname);
 

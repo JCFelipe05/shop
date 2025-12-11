@@ -4,6 +4,18 @@ $root_dir = $_SERVER['DOCUMENT_ROOT'];
 include($root_dir . '/student008/shop/backend/config/connection.php');
 include($root_dir . '/student008/shop/backend/header.php');
 
+$order_message = '';
+$message_class = '';
+
+if (isset($_SESSION['order_message'])) {
+    $order_message = $_SESSION['order_message'];
+    $message_class = ($_SESSION['order_success']) ? 'success' : 'error';
+    
+    // Limpiamos la sesión
+    unset($_SESSION['order_message']);
+    unset($_SESSION['order_success']);
+}
+
 $sql = "SELECT id_producto, id_cliente, cantidad FROM 008_carrito WHERE id_cliente = " . $_SESSION['user_id'];
 
 $total = 0;
@@ -24,6 +36,11 @@ if($result) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
+    <?php if ($order_message): ?>
+        <div class="message <?= $message_class ?>" style="border: 2px solid <?= ($message_class == 'success') ? 'green' : 'red' ?>; padding: 10px; margin-bottom: 15px;">
+            <p>**<?= htmlspecialchars($order_message) ?>**</p>
+        </div>
+    <?php endif; ?>
     <h1>Tus productos en el carrito</h1>
     </br>
     <div class="contenedor-productos">
@@ -53,12 +70,21 @@ if($result) {
         <?php endforeach; ?>
         <div class="total-carrito">
             <h2>Total: <?= number_format($total, 2) ?> €</h2>
+            <?php if (!empty($products)): ?>
+                <form action="/student008/shop/backend/create_order.php" method="POST">
+                    <input type="hidden" name="confirm_order" value="1">
+                    <button type="submit">Realizar Pedido Ahora</button>
+                </form>
+            <?php else: ?>
+                <p>Tu carrito está vacío.</p>
+            <?php endif; ?>
         </div>
     </div>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             document.querySelectorAll(".btn-delete").forEach(button => {
                 button.addEventListener("click", function () {
+                    
                     const productId = this.dataset.id;
 
                     fetch('/student008/shop/backend/delete_from_cart.php', {
@@ -93,4 +119,5 @@ if($result) {
 </html>
 <?php 
     mysqli_close($conn);
+    include($root_dir . '/student008/shop/backend/footer.php');
 ?>

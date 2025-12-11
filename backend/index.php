@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +14,7 @@
         include($root_dir . '/student008/shop/backend/header.php');
     ?>
     <main>
-        <h1>Bienvenido a Paracordial!</h1>
+        <h1>Bienvenido a Paracordial! <?php echo $_SESSION['username'] ?></h1>
         <p>Tu tienda online de productos hechos con paracord.</p>
     </main>
 </body>
