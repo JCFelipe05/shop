@@ -23,3 +23,6 @@
     
     mysqli_close($conn);
 ?>
+<?php 
+    include($root_dir . '/student008/shop/backend/footer.php');
+?>

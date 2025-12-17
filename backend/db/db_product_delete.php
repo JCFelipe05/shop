@@ -3,15 +3,13 @@
     include($root_dir . '/student008/shop/backend/config/connection.php');
     include($root_dir . '/student008/shop/backend/header.php');
     
-    print_r ($_POST);
-    
     $product_id = $_GET['id'];
 
     $sql = "DELETE FROM 008_producto WHERE id_producto='$product_id'";
-    if (mysqli_query($conn, $sql)) {
-        echo "Registro eliminado correctamente.";
+    if (!mysqli_query($conn, $sql)) {
+        echo "No se puede eliminar el producto porque tiene pedidos asociados.";
     } else {
-        echo "Error al borrar el registro.";
+        echo "Producto eliminado correctamente.";
     }
 
     mysqli_close($conn);

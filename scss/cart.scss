@@ -1,0 +1,487 @@
+$color-texto: #483519;
+$color-fondo: #F3F9D2;
+$color-resalto: #ED7D3A;
+$color-primario: #6F7C12;
+$color-secundario: #CBEAA6;
+
+$spacing-xs: 8px;
+$spacing-sm: 16px;
+$spacing-md: 24px;
+$spacing-lg: 32px;
+$spacing-xl: 48px;
+
+$radius-sm: 6px;
+$radius-md: 8px;
+$radius-lg: 12px;
+
+// ===================================
+// MIXINS
+// ===================================
+// Mixin para botones
+@mixin button($bg-color, $text-color, $padding: 12px 28px) {
+    display: inline-block;
+    padding: $padding;
+    background-color: $bg-color;
+    color: $text-color;
+    border: none;
+    border-radius: $radius-md;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: 'Chivo', sans-serif;
+    cursor: pointer;
+    text-align: center;
+
+    &:hover {
+        background-color: darken($bg-color, 10%);
+    }
+}
+
+// Mixin para tarjetas/contenedores
+@mixin card($padding: $spacing-md) {
+    background-color: white;
+    border-radius: $radius-lg;
+    padding: $padding;
+    box-shadow: 0 2px 8px rgba(72, 53, 25, 0.1);
+}
+
+// ===================================
+// RESET
+// ===================================
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Chivo', sans-serif;
+    background-color: $color-fondo;
+    color: $color-texto;
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+}
+
+// ===================================
+// COMPONENTES
+// ===================================
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 $spacing-sm;
+}
+
+// Botones
+.btn {
+    @include button($color-primario, $color-fondo);
+
+    &-block {
+        width: 100%;
+        display: block;
+    }
+}
+
+// ===================================
+// HEADER Y NAVEGACIÓN
+// ===================================
+header {
+    background-color: $color-primario;
+    box-shadow: 0 2px 8px rgba(72, 53, 25, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar {
+    padding: $spacing-sm 0;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 $spacing-sm;
+    position: relative;
+}
+
+.logo img {
+    height: 40px;
+    width: auto;
+}
+
+.menu-toggle {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    z-index: 1001;
+
+    span {
+        width: 25px;
+        height: 2px;
+        background-color: $color-fondo;
+    }
+}
+
+.nav-menu {
+    position: fixed;
+    top: 72px;
+    left: -100%;
+    width: 100%;
+    background-color: $color-primario;
+    padding: $spacing-md 0;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+
+    &.active {
+        left: 0;
+    }
+
+    li {
+        padding: 0;
+    }
+
+    a {
+        display: block;
+        padding: $spacing-sm $spacing-md;
+        color: $color-fondo;
+        font-weight: 500;
+
+        &:hover {
+            background-color: darken($color-primario, 10%);
+            color: $color-resalto;
+        }
+
+        &.active {
+            background-color: $color-resalto;
+            color: $color-fondo;
+        }
+    }
+}
+
+.nav-icons {
+    display: flex;
+    gap: $spacing-sm;
+    align-items: center;
+}
+
+.icon-link {
+    color: $color-fondo;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    border-radius: $radius-sm;
+    position: relative;
+
+    &:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    &.active {
+        background-color: $color-resalto;
+    }
+}
+
+.cart-count {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    background-color: $color-resalto;
+    color: $color-fondo;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 10px;
+    min-width: 18px;
+    text-align: center;
+}
+
+// ===================================
+// PÁGINA DEL CARRITO
+// ===================================
+.page-title {
+    font-size: 2em;
+    color: $color-texto;
+    margin: $spacing-lg 0;
+    font-weight: 700;
+    text-align: center;
+}
+
+.cart-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $spacing-lg;
+    margin-bottom: $spacing-xl;
+}
+
+// Items del carrito
+.cart-items {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+}
+
+.cart-item {
+    @include card($spacing-sm);
+    display: grid;
+    grid-template-columns: 80px 1fr auto;
+    gap: $spacing-sm;
+    align-items: center;
+    position: relative;
+}
+
+.item-image {
+    width: 80px;
+    height: 80px;
+    border-radius: $radius-md;
+    overflow: hidden;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+.item-details {
+    flex: 1;
+}
+
+.item-name {
+    font-size: 1.1em;
+    font-weight: 600;
+    color: $color-texto;
+    margin-bottom: 4px;
+}
+
+.item-description {
+    font-size: 0.9em;
+    color: lighten($color-texto, 20%);
+    margin-bottom: 8px;
+}
+
+.item-price {
+    font-size: 1em;
+    font-weight: 600;
+    color: $color-primario;
+}
+
+.item-quantity {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.qty-btn {
+    @include button($color-secundario, $color-texto, 8px);
+    width: 32px;
+    height: 32px;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.qty-input {
+    width: 50px;
+    height: 32px;
+    text-align: center;
+    border: 2px solid $color-secundario;
+    border-radius: $radius-sm;
+    background-color: $color-fondo;
+    font-weight: 600;
+    font-family: 'Chivo', sans-serif;
+}
+
+.item-total {
+    font-size: 1.2em;
+    font-weight: 700;
+    color: $color-primario;
+    display: none;
+}
+
+.item-remove {
+    position: absolute;
+    top: $spacing-sm;
+    right: $spacing-sm;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: lighten($color-texto, 30%);
+    padding: 4px;
+
+    &:hover {
+        color: $color-resalto;
+    }
+}
+
+// Resumen del carrito
+.cart-summary {
+    @include card($spacing-md);
+    height: fit-content;
+}
+
+.summary-title {
+    font-size: 1.5em;
+    color: $color-texto;
+    font-weight: 700;
+    margin-bottom: $spacing-md;
+}
+
+.summary-line {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: $spacing-sm;
+    font-size: 1em;
+    color: $color-texto;
+
+    &.summary-total {
+        font-size: 1.3em;
+        font-weight: 700;
+        color: $color-primario;
+        margin-top: $spacing-sm;
+    }
+}
+
+.summary-divider {
+    height: 1px;
+    background-color: $color-secundario;
+    margin: $spacing-md 0;
+}
+
+.continue-shopping {
+    display: block;
+    text-align: center;
+    color: $color-primario;
+    font-weight: 600;
+    margin-top: $spacing-md;
+
+    &:hover {
+        color: $color-resalto;
+    }
+}
+
+// ===================================
+// FOOTER
+// ===================================
+footer {
+    background-color: $color-primario;
+    color: $color-fondo;
+    padding: $spacing-xl 0 $spacing-md;
+    margin-top: $spacing-xl;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $spacing-lg;
+    margin-bottom: $spacing-lg;
+}
+
+.footer-section {
+    h4 {
+        font-size: 1.2em;
+        margin-bottom: $spacing-sm;
+        color: $color-fondo;
+    }
+
+    p,
+    li {
+        font-size: 0.95em;
+        margin-bottom: $spacing-xs;
+        opacity: 0.9;
+    }
+
+    a:hover {
+        color: $color-resalto;
+    }
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: $spacing-md;
+    border-top: 1px solid rgba(243, 249, 210, 0.2);
+    font-size: 0.9em;
+    opacity: 0.8;
+}
+
+// ===================================
+// RESPONSIVE - TABLET
+// ===================================
+@media (min-width: 768px) {
+    .menu-toggle {
+        display: none;
+    }
+
+    .nav-menu {
+        position: static;
+        display: flex;
+        width: auto;
+        padding: 0;
+        box-shadow: none;
+
+        li {
+            display: inline-block;
+        }
+
+        a {
+            padding: $spacing-sm $spacing-md;
+            border-radius: $radius-md;
+        }
+    }
+
+    .cart-item {
+        grid-template-columns: 100px 1fr auto auto auto;
+        padding: $spacing-md;
+    }
+
+    .item-image {
+        width: 100px;
+        height: 100px;
+    }
+
+    .item-total {
+        display: block;
+    }
+
+    .item-remove {
+        position: static;
+    }
+
+    .footer-content {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+// ===================================
+// RESPONSIVE - DESKTOP
+// ===================================
+@media (min-width: 1024px) {
+    .cart-layout {
+        grid-template-columns: 2fr 1fr;
+    }
+
+    .footer-content {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .container {
+        padding: 0 $spacing-md;
+    }
+}

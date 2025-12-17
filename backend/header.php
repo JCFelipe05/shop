@@ -2,10 +2,24 @@
     <title>Paracordial</title>
     <link rel="stylesheet" href="/student008/shop/backend/header_style.css">
 </head>
+
 <body>
     <nav class="navbar">
         <div class="nav-container">
             <a href="/student008/shop/backend/index.php" class="logo">Paracordial</a>
+            <?php
+            $idioma = $_COOKIE['idioma'] ?? 'es';
+            ?>
+            <p>Idioma seleccionado: <strong><?= strtoupper(htmlspecialchars($idioma)) ?></strong></p>
+            <div class="idioma-selector">
+                <form method="POST" action="/student008/shop/backend/set_idioma.php">
+                    <select name="idioma" onchange="this.form.submit()">
+                        <option value="es" <?= $idioma === 'es' ? 'selected' : '' ?>>Español</option>
+                        <option value="en" <?= $idioma === 'en' ? 'selected' : '' ?>>English</option>
+                        <option value="ca" <?= $idioma === 'ca' ? 'selected' : '' ?>>Català</option>
+                    </select>
+                </form>
+            </div>
             <ul class="nav-menu">
                 <li><a href="/student008/shop/backend/index.php" class="nav-link">Inicio</a></li>
                 <li><a href="/student008/shop/backend/products.php" class="nav-link">Productos</a></li>

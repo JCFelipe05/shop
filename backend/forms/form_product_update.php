@@ -1,10 +1,16 @@
-<?php 
-     
-    $root_dir = $_SERVER['DOCUMENT_ROOT'];
-    include($root_dir . '/student008/shop/backend/header.php');
+<?php
 
-    $id = $_POST['id'];
+$root_dir = $_SERVER['DOCUMENT_ROOT'];
+include($root_dir . '/student008/shop/backend/header.php');
+
+$id = $_GET['id'];
 ?>
+
+<head>
+    <link rel="stylesheet" href="/student008/shop/css/form.css">
+</head>
+
+<body>
     <div>
         <form action="/student008/shop/backend/db/db_product_update.php" method="POST">
             <input type="hidden" name="id" value="<?php echo $id; ?>">
@@ -23,6 +29,10 @@
             <label for="price">Precio:</label>
             <input type="number" id="price" name="price" required>
             <br>
-            <input type="submit" value="Enviar">
+            <input type="submit" value="Actualizar">
         </form>
     </div>
+</body>
+<?php
+include($root_dir . '/student008/shop/backend/footer.php');
+?>
