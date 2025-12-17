@@ -8,6 +8,32 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Chivo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos adicionales para estados de carga y error */
+        .loading, .no-products, .error-message {
+            text-align: center;
+            padding: 48px 16px;
+            color: #483519;
+            grid-column: 1 / -1;
+        }
+        
+        .error-message {
+            background-color: #ffebee;
+            border-radius: 8px;
+            color: #c62828;
+        }
+        
+        .loading::after {
+            content: '...';
+            animation: dots 1.5s steps(4, end) infinite;
+        }
+        
+        @keyframes dots {
+            0%, 20% { content: '.'; }
+            40% { content: '..'; }
+            60%, 100% { content: '...'; }
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -42,125 +68,21 @@
         </nav>
     </header>
 
-    
     <section class="hero">
         <div class="hero-content">
-            <div class="product-card">
-                <div class="product-image">
-                    <img src="assets/img/pulsera.jpg" alt="Pulsera Paracord Verde">
-                </div>
-                <div class="product-info">
-                    <h3>Pulsera Paracord</h3>
-                    <p class="product-description">Pulsera paracord</p>
-                    <div class="product-footer">
-                        <span class="price">12,99 €</span>
-                        <button class="btn btn-secondary btn-small"><a href="views/product-detail.html">Ver producto</a></button>
-                    </div>
-                </div>
-            </div>
+            <h1>Bienvenido a Paracordial</h1>
+            <p>Tu tienda de productos artesanales de Paracord</p>
             <a href="#" class="btn btn-primary">Ver productos</a>
         </div>
     </section>
 
-    
     <section class="featured-products">
         <div class="container">
             <h2>Productos Destacados</h2>
             
-            <div class="products-grid">
-                
-                <article class="product-card">
-                    <div class="product-image">
-                        <img src="assets/img/pulsera.jpg" alt="Pulsera Paracord Verde">
-                    </div>
-                    <div class="product-info">
-                        <h3>Pulsera Paracord</h3>
-                        <p class="product-description">Pulsera paracord</p>
-                        <div class="product-footer">
-                            <span class="price">12,99 €</span>
-                            <button class="btn btn-secondary btn-small"><a href="views/product-detail.html">Ver producto</a></button>
-                        </div>
-                    </div>
-                </article>
-
-                
-                <article class="product-card">
-                    <div class="product-image">
-                        <img src="assets/img/pulsera.jpg" alt="Llavero Paracord Negro">
-                        
-                    </div>
-                    <div class="product-info">
-                        <h3>Llavero </h3>
-                        <p class="product-description">Llavero</p>
-                        <div class="product-footer">
-                            <span class="price">7,99 €</span>
-                            <button class="btn btn-secondary btn-small"><a href="views/product-detail.html">Ver producto</a></button>
-                        </div>
-                    </div>
-                </article>
-
-                
-                <article class="product-card">
-                    <div class="product-image">
-                        <img src="assets/img/pulsera.jpg" alt="Collar Paracord Multicolor">
-                        
-                    </div>
-                    <div class="product-info">
-                        <h3>Collar Paracord</h3>
-                        <p class="product-description">Collar</p>
-                        <div class="product-footer">
-                            <span class="price">15,99 €</span>
-                            <button class="btn btn-secondary btn-small"><a href="views/product-detail.html">Ver producto</a></button>
-                        </div>
-                    </div>
-                </article>
-
-                
-                <article class="product-card">
-                    <div class="product-image">
-                        <img src="assets/img/pulsera.jpg" alt="Correa Paracord Azul">
-                        
-                    </div>
-                    <div class="product-info">
-                        <h3>Correa Paracord</h3>
-                        <p class="product-description">Correa</p>
-                        <div class="product-footer">
-                            <span class="price">19,99 €</span>
-                            <button class="btn btn-secondary btn-small"><a href="views/product-detail.html">Ver producto</a></button>
-                        </div>
-                    </div>
-                </article>
-
-                
-                <article class="product-card">
-                    <div class="product-image">
-                        <img src="assets/img/pulsera.jpg" alt="Pulsera Supervivencia">
-                        
-                    </div>
-                    <div class="product-info">
-                        <h3>Pulsera Supervivencia</h3>
-                        <p class="product-description">Pulsera</p>
-                        <div class="product-footer">
-                            <span class="price">24,99 €</span>
-                            <button class="btn btn-secondary btn-small"><a href="views/product-detail.html">Ver producto</a></button>
-                        </div>
-                    </div>
-                </article>
-
-                
-                <article class="product-card">
-                    <div class="product-image">
-                        <img src="assets/img/pulsera.jpg" alt="Set Camping Paracord">
-                    </div>
-                    <div class="product-info">
-                        <h3>Set Camping Paracord</h3>
-                        <p class="product-description">Kit completo</p>
-                        <div class="product-footer">
-                            <span class="price">34,99 €</span>
-                            <button class="btn btn-secondary btn-small"><a href="views/product-detail.html">Ver producto</a></button>
-                        </div>
-                    </div>
-                </article>
+            <!-- Contenedor dinámico de productos -->
+            <div class="products-grid" id="products-grid">
+                <p class="loading">Cargando productos</p>
             </div>
 
             <div class="view-all">
@@ -169,7 +91,6 @@
         </div>
     </section>
 
-    
     <footer>
         <div class="container">
             <div class="footer-content">
@@ -188,5 +109,19 @@
             </div>
         </div>
     </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Menú móvil toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+    </script>
+    
+    <!-- Cargar productos dinámicamente -->
+    <script src="js/products_loader.js"></script>
 </body>
 </html>
