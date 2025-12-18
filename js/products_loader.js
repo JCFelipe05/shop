@@ -1,6 +1,15 @@
+const localizacion = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+
+const API_BASE = localizacion ? '/student008/shop/backend/endpoints/' : 'https://remotehost.es/student008/shop/backend/endpoints/';
+
 const ProductLoader = {
+
+    
+
+
+
     // Configuración
-    apiUrl: '/student008/shop/endpoints/get_products.php',
+    apiUrl: `${API_BASE}get_products.php`,
     
     /**
      * Cargar productos desde la API
