@@ -14,10 +14,6 @@ $radius-sm: 6px;
 $radius-md: 8px;
 $radius-lg: 12px;
 
-// ===================================
-// MIXINS
-// ===================================
-// Mixin para botones
 @mixin button($bg-color, $text-color, $padding: 12px 28px) {
     display: inline-block;
     padding: $padding;
@@ -36,7 +32,6 @@ $radius-lg: 12px;
     }
 }
 
-// Mixin para tarjetas/contenedores
 @mixin card($padding: $spacing-md) {
     background-color: white;
     border-radius: $radius-lg;
@@ -44,9 +39,6 @@ $radius-lg: 12px;
     box-shadow: 0 2px 8px rgba(72, 53, 25, 0.1);
 }
 
-// ===================================
-// RESET
-// ===================================
 * {
     margin: 0;
     padding: 0;
@@ -76,9 +68,6 @@ ul {
     list-style: none;
 }
 
-// ===================================
-// COMPONENTES
-// ===================================
 .container {
     width: 100%;
     max-width: 1200px;
@@ -86,7 +75,6 @@ ul {
     padding: 0 $spacing-sm;
 }
 
-// Botones
 .btn {
     @include button($color-primario, $color-fondo);
 
@@ -96,9 +84,6 @@ ul {
     }
 }
 
-// ===================================
-// HEADER Y NAVEGACIÓN
-// ===================================
 header {
     background-color: $color-primario;
     box-shadow: 0 2px 8px rgba(72, 53, 25, 0.1);
@@ -120,7 +105,7 @@ header {
 }
 
 .logo img {
-    height: 40px;
+    height: 100px;
     width: auto;
 }
 
@@ -214,9 +199,6 @@ header {
     text-align: center;
 }
 
-// ===================================
-// PÁGINA DEL CARRITO
-// ===================================
 .page-title {
     font-size: 2em;
     color: $color-texto;
@@ -232,7 +214,6 @@ header {
     margin-bottom: $spacing-xl;
 }
 
-// Items del carrito
 .cart-items {
     display: flex;
     flex-direction: column;
@@ -331,7 +312,6 @@ header {
     }
 }
 
-// Resumen del carrito
 .cart-summary {
     @include card($spacing-md);
     height: fit-content;
@@ -377,9 +357,6 @@ header {
     }
 }
 
-// ===================================
-// FOOTER
-// ===================================
 footer {
     background-color: $color-primario;
     color: $color-fondo;
@@ -421,9 +398,6 @@ footer {
     opacity: 0.8;
 }
 
-// ===================================
-// RESPONSIVE - TABLET
-// ===================================
 @media (min-width: 768px) {
     .menu-toggle {
         display: none;
@@ -469,9 +443,6 @@ footer {
     }
 }
 
-// ===================================
-// RESPONSIVE - DESKTOP
-// ===================================
 @media (min-width: 1024px) {
     .cart-layout {
         grid-template-columns: 2fr 1fr;

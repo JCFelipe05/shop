@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Chivo:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <title>Document</title>
+    <title>Producto - Paracordial</title>
 </head>
 <body>
     <header class="sticky top-0 z-1000">
@@ -22,7 +22,7 @@
                     <span></span>
                 </button>
                 <ul class="nav-menu fixed top-18 -left-full w-full py-6 px-0" id="navMenu">
-                    <li><a href="/index.html" class="active">Inicio</a></li>
+                    <li><a href="../index.html">Inicio</a></li>
                     <li><a href="#">Productos</a></li>
                     <li><a href="#">Acerca de</a></li>
                     <li><a href="#">Contacto</a></li>
@@ -44,20 +44,24 @@
 
     <main class="flex items-center justify-center">
         <div class="body-container w-9/10 flex flex-col items-center justify-center mt-5 md:flex-row md:justify-between md:bg-[#507335] md:border md:rounded-4xl">
-            <img src="/assets/img/pulsera.jpg" alt="" class="w-full h-auto rounded-4xl md:mr-4">
+            <img id="product-image" src="" alt="" class="w-full h-auto rounded-4xl md:mr-4">
 
             <div class="desc flex-col items-center md:mr-4">
                 <div class="desc-title w-9/10">
-                    <h1>Pulsera de paracord:</h1>
+                    <h1 id="product-name">Cargando...</h1>
                 </div>
-                <div class="desc-text border-b border-t ">
-                    <p>Texto descriptivo del producto. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cupiditate repudiandae perspiciatis corporis mollitia nam animi voluptatem ipsa asperiores quia eveniet.</p>
+                <div class="desc-text border-b border-t">
+                    <p id="product-description">Cargando descripción...</p>
                 </div>
             </div>
+            
             <div class="info py-1.5 px-2.5 mt-2.5 w-9/10 flex flex-col items-center justify-center rounded-2xl md:h-full md:mr-4">
-                <p class="w-full">Precio: 9€</p>
-                <p class="w-full">Stock: 200</p>
-                <button class="boton w-28 p-1 rounded-2xl border border-green-950 cursor-pointer">Añadir al carrito</button>
+                <p class="w-full">Precio: <span id="product-price">-</span>€</p>
+                <p class="w-full">Color: <span id="product-color">-</span></p>
+                <p class="w-full">Medida: <span id="product-size">-</span></p>
+                <button class="boton w-28 p-1 rounded-2xl border border-green-950 cursor-pointer" id="add-to-cart">
+                    Añadir al carrito
+                </button>
             </div>
         </div>
     </main>
@@ -80,4 +84,65 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        // Menú móvil
+        document.getElementById('menuToggle')?.addEventListener('click', () => {
+            document.getElementById('navMenu')?.classList.toggle('active');
+        });
+
+        // Obtener ID del producto de la URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const productId = urlParams.get('id');
+
+        // Cargar datos del producto
+        async function loadProductDetail() {
+            if (!productId) {
+                alert('No se especificó un producto');
+                window.location.href = '../index.html';
+                return;
+            }
+
+            try {
+                const response = await fetch(`/student008/shop/endpoints/get_product.php?id=${productId}`);
+                const data = await response.json();
+
+                if (data.success && data.product) {
+                    const product = data.product;
+                    
+                    // Actualizar elementos del DOM
+                    document.getElementById('product-name').textContent = product.name;
+                    document.getElementById('product-description').textContent = product.description || 'Producto artesanal de paracord de alta calidad.';
+                    document.getElementById('product-price').textContent = product.price.toFixed(2);
+                    document.getElementById('product-color').textContent = product.color || 'Varios';
+                    document.getElementById('product-size').textContent = product.size || 'Estándar';
+                    document.getElementById('product-image').src = product.image;
+                    document.getElementById('product-image').alt = product.name;
+                    
+                    // Actualizar título de la página
+                    document.title = `${product.name} - Paracordial`;
+                    
+                    // Botón de añadir al carrito
+                    document.getElementById('add-to-cart').addEventListener('click', () => {
+                        window.location.href = `/student008/shop/backend/cart_insert.php?id=${product.id}`;
+                    });
+                } else {
+                    alert('Producto no encontrado');
+                    window.location.href = '../index.html';
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Error al cargar el producto');
+                window.location.href = '../index.html';
+            }
+        }
+
+        // Ejecutar al cargar la página
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', loadProductDetail);
+        } else {
+            loadProductDetail();
+        }
+    </script>
+</body>
 </html>

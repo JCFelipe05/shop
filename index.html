@@ -4,36 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Paracordial - Productos de Paracord</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style_irene.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Chivo:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <style>
-        /* Estilos adicionales para estados de carga y error */
-        .loading, .no-products, .error-message {
-            text-align: center;
-            padding: 48px 16px;
-            color: #483519;
-            grid-column: 1 / -1;
-        }
-        
-        .error-message {
-            background-color: #ffebee;
-            border-radius: 8px;
-            color: #c62828;
-        }
-        
-        .loading::after {
-            content: '...';
-            animation: dots 1.5s steps(4, end) infinite;
-        }
-        
-        @keyframes dots {
-            0%, 20% { content: '.'; }
-            40% { content: '..'; }
-            60%, 100% { content: '...'; }
-        }
-    </style>
 </head>
 <body>
     <header>
@@ -60,7 +34,7 @@
                     <a href="#" class="icon">
                         <img src="assets/icons/buscar.png" alt="">
                     </a>
-                    <a href="#" class="icon">
+                    <a href="views/cart.html" class="icon">
                         <img src="assets/icons/cart.png" alt="">
                     </a>
                 </div>
@@ -72,22 +46,14 @@
         <div class="hero-content">
             <h1>Bienvenido a Paracordial</h1>
             <p>Tu tienda de productos artesanales de Paracord</p>
-            <a href="#" class="btn btn-primary">Ver productos</a>
+            <a href="#productos" class="btn btn-primary">Ver productos</a>
         </div>
     </section>
 
-    <section class="featured-products">
+    <section class="featured-products" id="productos">
         <div class="container">
-            <h2>Productos Destacados</h2>
-            
-            <!-- Contenedor dinámico de productos -->
-            <div class="products-grid" id="products-grid">
-                <p class="loading">Cargando productos</p>
-            </div>
-
-            <div class="view-all">
-                <a href="#" class="btn btn-outline">Ver todos los productos</a>
-            </div>
+            <h2>Nuestros Productos</h2>
+            <div class="products-grid" id="products-grid"></div>
         </div>
     </section>
 
@@ -110,18 +76,52 @@
         </div>
     </footer>
 
-    <!-- Scripts -->
     <script>
-        // Menú móvil toggle
-        const menuToggle = document.getElementById('menuToggle');
-        const navMenu = document.getElementById('navMenu');
-
-        menuToggle.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
+        // Menú móvil
+        document.getElementById('menuToggle')?.addEventListener('click', () => {
+            document.getElementById('navMenu')?.classList.toggle('active');
         });
+
+        // Cargar productos
+        async function loadProducts() {
+            const container = document.getElementById('products-grid');
+            
+            try {
+                const response = await fetch('/student008/shop/endpoints/get_products.php');
+                const data = await response.json();
+                
+                if (data.success && data.products.length > 0) {
+                    container.innerHTML = data.products.map(p => `
+                        <article class="product-card">
+                            <div class="product-image">
+                                <img src="${p.image}" alt="${p.name}">
+                            </div>
+                            <div class="product-info">
+                                <h3>${p.name}</h3>
+                                <p class="product-description">${p.description || 'Producto artesanal de paracord'}</p>
+                                <div class="product-footer">
+                                    <span class="price">${p.price.toFixed(2)} €</span>
+                                    <a href="views/product-detail.html?id=${p.id}">
+                                        <button class="btn btn-secondary btn-small">Ver producto</button>
+                                    </a>
+                                </div>
+                            </div>
+                        </article>
+                    `).join('');
+                } else {
+                    container.innerHTML = '<p style="text-align:center;padding:48px 16px;grid-column:1/-1;">No hay productos disponibles.</p>';
+                }
+            } catch (error) {
+                container.innerHTML = '<p style="text-align:center;padding:48px 16px;grid-column:1/-1;color:#c62828;">Error al cargar productos.</p>';
+            }
+        }
+
+        // Ejecutar al cargar la página
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', loadProducts);
+        } else {
+            loadProducts();
+        }
     </script>
-    
-    <!-- Cargar productos dinámicamente -->
-    <script src="js/products_loader.js"></script>
 </body>
 </html>
