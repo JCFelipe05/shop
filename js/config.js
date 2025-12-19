@@ -9,7 +9,7 @@ const CONFIG = {
         
         return 'https://remotehost.es/student008/shop';
     })(),
-    
+     
     ENDPOINTS: {
         GET_PRODUCTS: '/endpoints/get_products.php',
         GET_PRODUCT: '/endpoints/get_product.php',

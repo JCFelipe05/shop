@@ -4,7 +4,7 @@
     $username = "dwess1234";
     $password = "Usertest1234.";
     $dbname = "dwesdatabase";
-
+ 
     // $servername = "localhost";
     // $username = "root";
     // $password = "";
