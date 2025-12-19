@@ -10,7 +10,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Chivo:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Header con navegación -->
     <header>
         <nav class="navbar">
             <div class="nav-container">
@@ -23,112 +22,72 @@
                     <span></span>
                 </button>
                 <ul class="nav-menu" id="navMenu">
-                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="../index.html">Inicio</a></li>
                     <li><a href="#">Productos</a></li>
                     <li><a href="#">Acerca de</a></li>
                     <li><a href="#">Contacto</a></li>
                 </ul>
                 <div class="nav-icons">
-                    <a href="#" class="icon-link" aria-label="Usuario">
-                        <img src="../assets/icons/personal.png" alt="">
-                    </a>
                     <a href="#" class="icon-link" aria-label="Buscar">
-                        <img src="../assets/icons/buscar.png" alt="">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="m21 21-4.35-4.35"></path>
+                        </svg>
+                    </a>
+                    <a href="#" class="icon-link" aria-label="Usuario">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
                     </a>
                     <a href="#" class="icon-link cart active" aria-label="Carrito">
-                        <img src="../assets/icons/cart.png" alt="">
-                        <span class="cart-count">2</span>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                            <circle cx="9" cy="21" r="1"></circle>
+                            <circle cx="20" cy="21" r="1"></circle>
+                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                        </svg>
+                        <span class="cart-count" id="cart-count">0</span>
                     </a>
                 </div>
             </div>
         </nav>
     </header>
 
-    <!-- Contenido principal -->
     <main class="container">
         <h1 class="page-title">Carrito de Compra</h1>
 
         <div class="cart-layout">
-            <!-- Lista de productos -->
-            <section class="cart-items">
-                <!-- Producto 1 -->
-                <article class="cart-item">
-                    <div class="item-image">
-                        <img src="../assets/img/pulsera.jpg" alt="Pulsera Paracord Verde">
-                    </div>
-                    <div class="item-details">
-                        <h3 class="item-name">Pulsera Paracord Verde</h3>
-                        <p class="item-description">Resistente, tejida a mano</p>
-                        <div class="item-price">12,99 €</div>
-                    </div>
-                    <div class="item-quantity">
-                        <button class="qty-btn" aria-label="Disminuir cantidad">-</button>
-                        <input type="number" value="1" min="1" class="qty-input">
-                        <button class="qty-btn" aria-label="Aumentar cantidad">+</button>
-                    </div>
-                    <div class="item-total">12,99 €</div>
-                    <button class="item-remove" aria-label="Eliminar producto">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <polyline points="3 6 5 6 21 6"></polyline>
-                            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-                        </svg>
-                    </button>
-                </article>
-
-                <!-- Producto 2 -->
-                <article class="cart-item">
-                    <div class="item-image">
-                        <img src="../assets/img/pulsera.jpg" alt="Llavero Paracord Negro">
-                    </div>
-                    <div class="item-details">
-                        <h3 class="item-name">Llavero Paracord Negro</h3>
-                        <p class="item-description">Práctico y duradero</p>
-                        <div class="item-price">7,99 €</div>
-                    </div>
-                    <div class="item-quantity">
-                        <button class="qty-btn" aria-label="Disminuir cantidad">-</button>
-                        <input type="number" value="1" min="1" class="qty-input">
-                        <button class="qty-btn" aria-label="Aumentar cantidad">+</button>
-                    </div>
-                    <div class="item-total">7,99 €</div>
-                    <button class="item-remove" aria-label="Eliminar producto">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <polyline points="3 6 5 6 21 6"></polyline>
-                            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-                        </svg>
-                    </button>
-                </article>
+            <section class="cart-items" id="cart-items">
+                <p style="text-align: center; padding: 48px 16px;">Cargando carrito...</p>
             </section>
 
-            <!-- Resumen del pedido -->
             <aside class="cart-summary">
                 <h2 class="summary-title">Resumen del pedido</h2>
                 
                 <div class="summary-line">
                     <span>Subtotal</span>
-                    <span>20,98 €</span>
+                    <span id="summary-subtotal">0,00 €</span>
                 </div>
                 
                 <div class="summary-line">
                     <span>Envío</span>
-                    <span>3,99 €</span>
+                    <span id="summary-shipping">3,99 €</span>
                 </div>
                 
                 <div class="summary-divider"></div>
                 
                 <div class="summary-line summary-total">
                     <span>Total</span>
-                    <span>24,97 €</span>
+                    <span id="summary-total">0,00 €</span>
                 </div>
 
-                <button class="btn btn-primary btn-block">Proceder al pago</button>
+                <button class="btn btn-primary btn-block" disabled>Proceder al pago</button>
                 
-                <a href="index.html" class="continue-shopping">Continuar comprando</a>
+                <a href="../index.html" class="continue-shopping">Continuar comprando</a>
             </aside>
         </div>
     </main>
 
-    <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-content">
@@ -138,28 +97,12 @@
                 </div>
                 <div class="footer-section">
                     <h4>Navegación</h4>
-                    <ul>
-                        <li><a href="index.html">Inicio</a></li>
-                        <li><a href="#">Productos</a></li>
-                        <li><a href="#">Acerca de</a></li>
-                        <li><a href="#">Contacto</a></li>
-                    </ul>
                 </div>
                 <div class="footer-section">
                     <h4>Información</h4>
-                    <ul>
-                        <li><a href="#">Política de envíos</a></li>
-                        <li><a href="#">Política de devoluciones</a></li>
-                        <li><a href="#">Términos y condiciones</a></li>
-                        <li><a href="#">Política de privacidad</a></li>
-                    </ul>
                 </div>
                 <div class="footer-section">
                     <h4>Contacto</h4>
-                    <ul>
-                        <li>Email: info@paracordial.com</li>
-                        <li>Tel: +34 123 456 789</li>
-                    </ul>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -186,6 +129,126 @@
                 menuToggle.classList.remove('active');
             });
         });
+
+        let cartData = null;
+
+        // Cargar carrito
+        async function loadCart() {
+            try {
+                const response = await fetch('/student008/shop/endpoints/get_cart.php');
+                const data = await response.json();
+
+                if (!data.success) {
+                    if (data.redirect) {
+                        alert('Debes iniciar sesión para ver tu carrito');
+                        window.location.href = data.redirect;
+                        return;
+                    }
+                    throw new Error(data.error);
+                }
+
+                cartData = data;
+                renderCart();
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('cart-items').innerHTML = `
+                    <p style="text-align: center; padding: 48px 16px; color: #c62828;">
+                        Error al cargar el carrito. Por favor, recarga la página.
+                    </p>
+                `;
+            }
+        }
+
+        // Renderizar carrito
+        function renderCart() {
+            const container = document.getElementById('cart-items');
+            
+            if (cartData.items.length === 0) {
+                container.innerHTML = `
+                    <p style="text-align: center; padding: 48px 16px;">
+                        Tu carrito está vacío.
+                        <br><br>
+                        <a href="../index.html" style="color: #6F7C12; font-weight: 600;">
+                            ← Volver a la tienda
+                        </a>
+                    </p>
+                `;
+                updateSummary();
+                return;
+            }
+
+            container.innerHTML = cartData.items.map(item => `
+                <article class="cart-item" data-product-id="${item.id}">
+                    <div class="item-image">
+                        <img src="${item.image}" alt="${item.name}">
+                    </div>
+                    <div class="item-details">
+                        <h3 class="item-name">${item.name}</h3>
+                        <p class="item-description">${item.description || 'Producto de paracord'}</p>
+                        <div class="item-price">${item.price.toFixed(2)} €</div>
+                    </div>
+                    <div class="item-quantity">
+                        <button class="qty-btn" onclick="updateQuantity(${item.id}, 'decrease')" aria-label="Disminuir cantidad">-</button>
+                        <input type="number" value="${item.quantity}" min="1" class="qty-input" readonly>
+                        <button class="qty-btn" onclick="updateQuantity(${item.id}, 'increase')" aria-label="Aumentar cantidad">+</button>
+                    </div>
+                    <div class="item-total">${item.total.toFixed(2)} €</div>
+                    <button class="item-remove" onclick="updateQuantity(${item.id}, 'decrease')" aria-label="Eliminar producto">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="3 6 5 6 21 6"></polyline>
+                            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                        </svg>
+                    </button>
+                </article>
+            `).join('');
+
+            updateSummary();
+        }
+
+        // Actualizar resumen
+        function updateSummary() {
+            if (!cartData) return;
+
+            document.getElementById('cart-count').textContent = cartData.summary.itemCount;
+            document.getElementById('summary-subtotal').textContent = cartData.summary.subtotal.toFixed(2) + ' €';
+            document.getElementById('summary-shipping').textContent = cartData.summary.shipping.toFixed(2) + ' €';
+            document.getElementById('summary-total').textContent = cartData.summary.total.toFixed(2) + ' €';
+        }
+
+        // Actualizar cantidad
+        async function updateQuantity(productId, action) {
+            try {
+                const response = await fetch('/student008/shop/endpoints/update_cart.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        product_id: productId,
+                        action: action
+                    })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    // Recargar carrito completo
+                    await loadCart();
+                } else {
+                    alert('Error al actualizar: ' + data.error);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Error al actualizar el carrito');
+            }
+        }
+
+        // Inicializar
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', loadCart);
+        } else {
+            loadCart();
+        }
     </script>
 </body>
 </html>
