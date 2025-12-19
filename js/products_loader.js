@@ -11,9 +11,6 @@ const ProductLoader = {
     // Configuración
     apiUrl: `${API_BASE}get_products.php`,
     
-    /**
-     * Cargar productos desde la API
-     */
     async loadProducts(options = {}) {
         const { limit = null, category = null, featured = false } = options;
         
@@ -52,9 +49,6 @@ const ProductLoader = {
         }
     },
     
-    /**
-     * Renderizar productos en el grid
-     */
     renderProducts(products, containerId = 'products-grid') {
         const container = document.getElementById(containerId);
         
@@ -78,9 +72,6 @@ const ProductLoader = {
         });
     },
     
-    /**
-     * Crear card HTML de producto
-     */
     createProductCard(product) {
         const article = document.createElement('article');
         article.className = 'product-card';
@@ -104,17 +95,11 @@ const ProductLoader = {
         return article;
     },
     
-    /**
-     * Ver detalle de producto
-     */
     viewProduct(productId) {
         // Redirigir a página de detalle
         window.location.href = `/student008/shop/views/product-detail.html?id=${productId}`;
     },
     
-    /**
-     * Mostrar mensaje de error
-     */
     showError(message) {
         const container = document.getElementById('products-grid');
         if (container) {
@@ -126,9 +111,6 @@ const ProductLoader = {
         }
     },
     
-    /**
-     * Inicializar cargador de productos
-     */
     async init() {
         // Esperar a que el DOM esté listo
         if (document.readyState === 'loading') {
@@ -138,9 +120,6 @@ const ProductLoader = {
         }
     },
     
-    /**
-     * Cargar y renderizar productos
-     */
     async loadAndRender() {
         // Mostrar indicador de carga
         const container = document.getElementById('products-grid');

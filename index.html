@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Paracordial - Productos de Paracord</title>
-    <link rel="stylesheet" href="css/style_irene.css">
+    <link rel="stylesheet" href="css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Chivo:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -28,7 +28,7 @@
                     <li><a href="#">Contacto</a></li>
                 </ul>
                 <div class="nav-icons">
-                    <a href="backend/forms/form_login.php" class="icon">
+                    <a href="#" id="login-link" class="icon">
                         <img src="assets/icons/personal.png" alt="">
                     </a>
                     <a href="#" class="icon">
@@ -76,18 +76,27 @@
         </div>
     </footer>
 
+    <!-- Configuración -->
+    <script src="js/config.js"></script>
+    
     <script>
         // Menú móvil
         document.getElementById('menuToggle')?.addEventListener('click', () => {
             document.getElementById('navMenu')?.classList.toggle('active');
         });
 
+        // Link de login dinámico
+        document.getElementById('login-link').href = getPath(CONFIG.PATHS.LOGIN);
+
         // Cargar productos
         async function loadProducts() {
             const container = document.getElementById('products-grid');
             
             try {
-                const response = await fetch('/student008/shop/endpoints/get_products.php');
+                const url = getApiUrl(CONFIG.ENDPOINTS.GET_PRODUCTS);
+                const response = await fetch(url, {
+                    credentials: 'include' // Importante para sesiones
+                });
                 const data = await response.json();
                 
                 if (data.success && data.products.length > 0) {
@@ -112,7 +121,8 @@
                     container.innerHTML = '<p style="text-align:center;padding:48px 16px;grid-column:1/-1;">No hay productos disponibles.</p>';
                 }
             } catch (error) {
-                container.innerHTML = '<p style="text-align:center;padding:48px 16px;grid-column:1/-1;color:#c62828;">Error al cargar productos.</p>';
+                console.error('Error:', error);
+                container.innerHTML = '<p style="text-align:center;padding:48px 16px;grid-column:1/-1;color:#c62828;">Error al cargar productos. Verifica que el servidor esté disponible.</p>';
             }
         }
 

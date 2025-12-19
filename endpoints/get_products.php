@@ -1,4 +1,33 @@
 <?php
+// Permitir orígenes específicos
+$allowed_origins = [
+    'http://localhost',
+    'http://127.0.0.1',
+    'https://JCFelipe05.github.io'
+];
+
+// Obtener el origen de la petición
+$origin = isset($_SERVER['HTTP_ORIGIN']) ? $_SERVER['HTTP_ORIGIN'] : '';
+
+// Verificar si el origen está permitido
+if (in_array($origin, $allowed_origins)) {
+    header("Access-Control-Allow-Origin: $origin");
+}
+
+// Headers CORS necesarios
+header('Access-Control-Allow-Credentials: true');
+header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
+header('Access-Control-Allow-Headers: Content-Type, Accept');
+header('Content-Type: application/json; charset=utf-8');
+
+// Manejar preflight requests
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    http_response_code(200);
+    exit();
+}
+
+?>
+<?php
 
 header('Content-Type: application/json; charset=utf-8');
 header('Access-Control-Allow-Origin: *');

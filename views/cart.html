@@ -34,7 +34,7 @@
                             <path d="m21 21-4.35-4.35"></path>
                         </svg>
                     </a>
-                    <a href="#" class="icon-link" aria-label="Usuario">
+                    <a href="#" id="login-link" class="icon-link" aria-label="Usuario">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
                             <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                             <circle cx="12" cy="7" r="4"></circle>
@@ -97,12 +97,28 @@
                 </div>
                 <div class="footer-section">
                     <h4>Navegación</h4>
+                    <ul>
+                        <li><a href="../index.html">Inicio</a></li>
+                        <li><a href="#">Productos</a></li>
+                        <li><a href="#">Acerca de</a></li>
+                        <li><a href="#">Contacto</a></li>
+                    </ul>
                 </div>
                 <div class="footer-section">
                     <h4>Información</h4>
+                    <ul>
+                        <li><a href="#">Política de envíos</a></li>
+                        <li><a href="#">Política de devoluciones</a></li>
+                        <li><a href="#">Términos y condiciones</a></li>
+                        <li><a href="#">Política de privacidad</a></li>
+                    </ul>
                 </div>
                 <div class="footer-section">
                     <h4>Contacto</h4>
+                    <ul>
+                        <li>Email: info@paracordial.com</li>
+                        <li>Tel: +34 123 456 789</li>
+                    </ul>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -111,7 +127,13 @@
         </div>
     </footer>
 
+    <!-- Configuración -->
+    <script src="../js/config.js"></script>
+
     <script>
+        // Link de login dinámico
+        document.getElementById('login-link').href = getPath(CONFIG.PATHS.LOGIN);
+
         // Menú móvil toggle
         const menuToggle = document.getElementById('menuToggle');
         const navMenu = document.getElementById('navMenu');
@@ -135,13 +157,16 @@
         // Cargar carrito
         async function loadCart() {
             try {
-                const response = await fetch('/student008/shop/endpoints/get_cart.php');
+                const url = getApiUrl(CONFIG.ENDPOINTS.GET_CART);
+                const response = await fetch(url, {
+                    credentials: 'include'
+                });
                 const data = await response.json();
 
                 if (!data.success) {
                     if (data.redirect) {
                         alert('Debes iniciar sesión para ver tu carrito');
-                        window.location.href = data.redirect;
+                        window.location.href = getPath(CONFIG.PATHS.LOGIN);
                         return;
                     }
                     throw new Error(data.error);
@@ -153,7 +178,7 @@
                 console.error('Error:', error);
                 document.getElementById('cart-items').innerHTML = `
                     <p style="text-align: center; padding: 48px 16px; color: #c62828;">
-                        Error al cargar el carrito. Por favor, recarga la página.
+                        Error al cargar el carrito. Verifica que el servidor esté disponible.
                     </p>
                 `;
             }
@@ -218,11 +243,13 @@
         // Actualizar cantidad
         async function updateQuantity(productId, action) {
             try {
-                const response = await fetch('/student008/shop/endpoints/update_cart.php', {
+                const url = getApiUrl(CONFIG.ENDPOINTS.UPDATE_CART);
+                const response = await fetch(url, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },
+                    credentials: 'include',
                     body: JSON.stringify({
                         product_id: productId,
                         action: action
