@@ -1,195 +1,389 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Carrito de Compra - Paracordial</title>
-    <link rel="stylesheet" href="../scss/cart.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Chivo:wght@300;400;600;700&display=swap" rel="stylesheet">
-</head>
-<body>
-    <header>
-        <nav class="navbar">
-            <div class="nav-container">
-                <div class="logo">
-                    <img src="../assets/img/logo.png" alt="Paracordial">
-                </div>
-                <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-                <ul class="nav-menu" id="navMenu">
-                    <li><a href="../index.html">Inicio</a></li>
-                    <li><a href="#">Productos</a></li>
-                    <li><a href="#">Acerca de</a></li>
-                    <li><a href="#">Contacto</a></li>
-                </ul>
-                <div class="nav-icons">
-                    <a href="#" class="icon-link" aria-label="Buscar">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-                            <circle cx="11" cy="11" r="8"></circle>
-                            <path d="m21 21-4.35-4.35"></path>
-                        </svg>
-                    </a>
-                    <a href="#" id="login-link" class="icon-link" aria-label="Usuario">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                            <circle cx="12" cy="7" r="4"></circle>
-                        </svg>
-                    </a>
-                    <a href="#" class="icon-link cart active" aria-label="Carrito">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-                            <circle cx="9" cy="21" r="1"></circle>
-                            <circle cx="20" cy="21" r="1"></circle>
-                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-                        </svg>
-                        <span class="cart-count" id="cart-count">0</span>
-                    </a>
-                </div>
+    <link rel="stylesheet" href="../scss/cart.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Chivo:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/accesibilitat.css" />
+  </head>
+  <body>
+    <button
+      id="accessibility-toggle"
+      class="accessibility-toggle"
+      aria-label="Abrir menú de accessibilidad"
+    >
+      Accessibilidad
+    </button>
+
+    <!-- Panel lateral de accesibilidad -->
+    <aside
+      id="accessibility-panel"
+      class="accessibility-panel"
+      role="dialog"
+      aria-label="Menú de accesibilidad"
+      aria-hidden="true"
+    >
+      <div class="accessibility-header">
+        <h2>Opciones de Accessibilidad</h2>
+        <button id="close-panel" class="close-btn" aria-label="Tancar menú">
+          ×
+        </button>
+      </div>
+
+      <div class="accessibility-content">
+        <!-- Contraste -->
+        <section class="accessibility-section">
+          <h3>Contraste</h3>
+          <div class="button-group">
+            <button class="accessibility-btn" data-contrast="normal">
+              Normal
+            </button>
+            <button class="accessibility-btn" data-contrast="grayscale">
+              Escala de grises
+            </button>
+            <button class="accessibility-btn" data-contrast="dark">
+              Contraste oscuro
+            </button>
+            <button class="accessibility-btn" data-contrast="light">
+              Contraste claro
+            </button>
+            <button class="accessibility-btn" data-contrast="high-saturation">
+              Saturación alta
+            </button>
+            <button class="accessibility-btn" data-contrast="low-saturation">
+              Saturación baja
+            </button>
+          </div>
+        </section>
+
+        <!-- Tipografia -->
+        <section class="accessibility-section">
+          <h3>Tipografia</h3>
+
+          <!-- Medida de letra -->
+          <div class="control-group">
+            <label for="font-size">Medida de la letra:</label>
+            <div class="control-buttons">
+              <button
+                class="control-btn"
+                data-action="decrease"
+                data-target="font-size"
+                aria-label="Disminuir medida de letra"
+              >
+                -
+              </button>
+              <span id="font-size-value" class="value-display">1em</span>
+              <button
+                class="control-btn"
+                data-action="increase"
+                data-target="font-size"
+                aria-label="Aumentar medido de letra"
+              >
+                +
+              </button>
             </div>
-        </nav>
+          </div>
+
+          <!-- Espacio entre lineas -->
+          <div class="control-group">
+            <label for="line-height">Interlineado:</label>
+            <div class="control-buttons">
+              <button
+                class="control-btn"
+                data-action="decrease"
+                data-target="line-height"
+                aria-label="Disminuir interlineado"
+              >
+                -
+              </button>
+              <span id="line-height-value" class="value-display">1.5</span>
+              <button
+                class="control-btn"
+                data-action="increase"
+                data-target="line-height"
+                aria-label="Aumentar interlineado"
+              >
+                +
+              </button>
+            </div>
+          </div>
+
+          <!-- Espacio entre palabras -->
+          <div class="control-group">
+            <label for="word-spacing">Espacio entre palabras:</label>
+            <div class="control-buttons">
+              <button
+                class="control-btn"
+                data-action="decrease"
+                data-target="word-spacing"
+                aria-label="Disminuir espacio entre palabras"
+              >
+                -
+              </button>
+              <span id="word-spacing-value" class="value-display">0em</span>
+              <button
+                class="control-btn"
+                data-action="increase"
+                data-target="word-spacing"
+                aria-label="Aumentar espacio entre palabras"
+              >
+                +
+              </button>
+            </div>
+          </div>
+
+          <!-- Espacio entre letras -->
+          <div class="control-group">
+            <label for="letter-spacing">Espaiat entre lletres:</label>
+            <div class="control-buttons">
+              <button
+                class="control-btn"
+                data-action="decrease"
+                data-target="letter-spacing"
+                aria-label="Disminuir espacio entre letras"
+              >
+                -
+              </button>
+              <span id="letter-spacing-value" class="value-display">0em</span>
+              <button
+                class="control-btn"
+                data-action="increase"
+                data-target="letter-spacing"
+                aria-label="Aumentar espacio entre letras"
+              >
+                +
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Reset -->
+        <section class="accessibility-section">
+          <button id="reset-accessibility" class="reset-btn">
+            Resetear Accessibilitat
+          </button>
+        </section>
+      </div>
+    </aside>
+    <header>
+      <nav class="navbar">
+        <div class="nav-container">
+          <div class="logo">
+            <img src="../assets/img/logo.png" alt="Paracordial" />
+          </div>
+          <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+          <ul class="nav-menu" id="navMenu">
+            <li><a href="../index.html">Inicio</a></li>
+            <li><a href="#">Productos</a></li>
+            <li><a href="#">Acerca de</a></li>
+            <li><a href="#">Contacto</a></li>
+          </ul>
+          <div class="nav-icons">
+            <a href="#" class="icon-link" aria-label="Buscar">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1"
+              >
+                <circle cx="11" cy="11" r="8"></circle>
+                <path d="m21 21-4.35-4.35"></path>
+              </svg>
+            </a>
+            <a href="#" id="login-link" class="icon-link" aria-label="Usuario">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1"
+              >
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+            </a>
+            <a href="#" class="icon-link cart active" aria-label="Carrito">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1"
+              >
+                <circle cx="9" cy="21" r="1"></circle>
+                <circle cx="20" cy="21" r="1"></circle>
+                <path
+                  d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"
+                ></path>
+              </svg>
+              <span class="cart-count" id="cart-count">0</span>
+            </a>
+          </div>
+        </div>
+      </nav>
     </header>
 
     <main class="container">
-        <h1 class="page-title">Carrito de Compra</h1>
+      <h1 class="page-title">Carrito de Compra</h1>
 
-        <div class="cart-layout">
-            <section class="cart-items" id="cart-items">
-                <p style="text-align: center; padding: 48px 16px;">Cargando carrito...</p>
-            </section>
+      <div class="cart-layout">
+        <section class="cart-items" id="cart-items">
+          <p style="text-align: center; padding: 48px 16px">
+            Cargando carrito...
+          </p>
+        </section>
 
-            <aside class="cart-summary">
-                <h2 class="summary-title">Resumen del pedido</h2>
-                
-                <div class="summary-line">
-                    <span>Subtotal</span>
-                    <span id="summary-subtotal">0,00 €</span>
-                </div>
-                
-                <div class="summary-line">
-                    <span>Envío</span>
-                    <span id="summary-shipping">3,99 €</span>
-                </div>
-                
-                <div class="summary-divider"></div>
-                
-                <div class="summary-line summary-total">
-                    <span>Total</span>
-                    <span id="summary-total">0,00 €</span>
-                </div>
+        <aside class="cart-summary">
+          <h2 class="summary-title">Resumen del pedido</h2>
 
-                <button class="btn btn-primary btn-block" disabled>Proceder al pago</button>
-                
-                <a href="../index.html" class="continue-shopping">Continuar comprando</a>
-            </aside>
-        </div>
+          <div class="summary-line">
+            <span>Subtotal</span>
+            <span id="summary-subtotal">0,00 €</span>
+          </div>
+
+          <div class="summary-line">
+            <span>Envío</span>
+            <span id="summary-shipping">3,99 €</span>
+          </div>
+
+          <div class="summary-divider"></div>
+
+          <div class="summary-line summary-total">
+            <span>Total</span>
+            <span id="summary-total">0,00 €</span>
+          </div>
+
+          <button class="btn btn-primary btn-block" disabled>
+            Proceder al pago
+          </button>
+
+          <a href="../index.html" class="continue-shopping"
+            >Continuar comprando</a
+          >
+        </aside>
+      </div>
     </main>
 
     <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h4>Paracordial</h4>
-                    <p>Tu tienda de confianza para productos de Paracord artesanales y de alta calidad.</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Navegación</h4>
-                    <ul>
-                        <li><a href="../index.html">Inicio</a></li>
-                        <li><a href="#">Productos</a></li>
-                        <li><a href="#">Acerca de</a></li>
-                        <li><a href="#">Contacto</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Información</h4>
-                    <ul>
-                        <li><a href="#">Política de envíos</a></li>
-                        <li><a href="#">Política de devoluciones</a></li>
-                        <li><a href="#">Términos y condiciones</a></li>
-                        <li><a href="#">Política de privacidad</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Contacto</h4>
-                    <ul>
-                        <li>Email: info@paracordial.com</li>
-                        <li>Tel: +34 123 456 789</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Paracordial. Todos los derechos reservados.</p>
-            </div>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h4>Paracordial</h4>
+            <p>
+              Tu tienda de confianza para productos de Paracord artesanales y de
+              alta calidad.
+            </p>
+          </div>
+          <div class="footer-section">
+            <h4>Navegación</h4>
+            <ul>
+              <li><a href="../index.html">Inicio</a></li>
+              <li><a href="#">Productos</a></li>
+              <li><a href="#">Acerca de</a></li>
+              <li><a href="#">Contacto</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h4>Información</h4>
+            <ul>
+              <li><a href="#">Política de envíos</a></li>
+              <li><a href="#">Política de devoluciones</a></li>
+              <li><a href="#">Términos y condiciones</a></li>
+              <li><a href="#">Política de privacidad</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h4>Contacto</h4>
+            <ul>
+              <li>Email: info@paracordial.com</li>
+              <li>Tel: +34 123 456 789</li>
+            </ul>
+          </div>
         </div>
+        <div class="footer-bottom">
+          <p>&copy; 2025 Paracordial. Todos los derechos reservados.</p>
+        </div>
+      </div>
     </footer>
 
     <!-- Configuración -->
     <script src="../js/config.js"></script>
 
     <script>
-        // Link de login dinámico
-        document.getElementById('login-link').href = getPath(CONFIG.PATHS.LOGIN);
+      // Link de login dinámico
+      document.getElementById("login-link").href = getPath(CONFIG.PATHS.LOGIN);
 
-        // Menú móvil toggle
-        const menuToggle = document.getElementById('menuToggle');
-        const navMenu = document.getElementById('navMenu');
+      // Menú móvil toggle
+      const menuToggle = document.getElementById("menuToggle");
+      const navMenu = document.getElementById("navMenu");
 
-        menuToggle.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-            menuToggle.classList.toggle('active');
+      menuToggle.addEventListener("click", () => {
+        navMenu.classList.toggle("active");
+        menuToggle.classList.toggle("active");
+      });
+
+      // Cerrar menú al hacer clic en un enlace
+      const navLinks = document.querySelectorAll(".nav-menu a");
+      navLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          navMenu.classList.remove("active");
+          menuToggle.classList.remove("active");
         });
+      });
 
-        // Cerrar menú al hacer clic en un enlace
-        const navLinks = document.querySelectorAll('.nav-menu a');
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                navMenu.classList.remove('active');
-                menuToggle.classList.remove('active');
-            });
-        });
+      let cartData = null;
 
-        let cartData = null;
+      // Cargar carrito
+      async function loadCart() {
+        try {
+          const url = getApiUrl(CONFIG.ENDPOINTS.GET_CART);
+          const response = await fetch(url, {
+            credentials: "include",
+          });
+          const data = await response.json();
 
-        // Cargar carrito
-        async function loadCart() {
-            try {
-                const url = getApiUrl(CONFIG.ENDPOINTS.GET_CART);
-                const response = await fetch(url, {
-                    credentials: 'include'
-                });
-                const data = await response.json();
+          if (!data.success) {
+            if (data.redirect) {
+              alert("Debes iniciar sesión para ver tu carrito");
+              window.location.href = getPath(CONFIG.PATHS.LOGIN);
+              return;
+            }
+            throw new Error(data.error);
+          }
 
-                if (!data.success) {
-                    if (data.redirect) {
-                        alert('Debes iniciar sesión para ver tu carrito');
-                        window.location.href = getPath(CONFIG.PATHS.LOGIN);
-                        return;
-                    }
-                    throw new Error(data.error);
-                }
-
-                cartData = data;
-                renderCart();
-            } catch (error) {
-                console.error('Error:', error);
-                document.getElementById('cart-items').innerHTML = `
+          cartData = data;
+          renderCart();
+        } catch (error) {
+          console.error("Error:", error);
+          document.getElementById("cart-items").innerHTML = `
                     <p style="text-align: center; padding: 48px 16px; color: #c62828;">
                         Error al cargar el carrito. Verifica que el servidor esté disponible.
                     </p>
                 `;
-            }
         }
+      }
 
-        // Renderizar carrito
-        function renderCart() {
-            const container = document.getElementById('cart-items');
-            
-            if (cartData.items.length === 0) {
-                container.innerHTML = `
+      // Renderizar carrito
+      function renderCart() {
+        const container = document.getElementById("cart-items");
+
+        if (cartData.items.length === 0) {
+          container.innerHTML = `
                     <p style="text-align: center; padding: 48px 16px;">
                         Tu carrito está vacío.
                         <br><br>
@@ -198,18 +392,20 @@
                         </a>
                     </p>
                 `;
-                updateSummary();
-                return;
-            }
+          updateSummary();
+          return;
+        }
 
-            container.innerHTML = cartData.items.map(item => `
+        container.innerHTML = cartData.items
+          .map(
+            (item) => `
                 <article class="cart-item" data-product-id="${item.id}">
                     <div class="item-image">
                         <img src="${item.image}" alt="${item.name}">
                     </div>
                     <div class="item-details">
                         <h3 class="item-name">${item.name}</h3>
-                        <p class="item-description">${item.description || 'Producto de paracord'}</p>
+                        <p class="item-description">${item.description || "Producto de paracord"}</p>
                         <div class="item-price">${item.price.toFixed(2)} €</div>
                     </div>
                     <div class="item-quantity">
@@ -225,57 +421,65 @@
                         </svg>
                     </button>
                 </article>
-            `).join('');
+            `,
+          )
+          .join("");
 
-            updateSummary();
+        updateSummary();
+      }
+
+      // Actualizar resumen
+      function updateSummary() {
+        if (!cartData) return;
+
+        document.getElementById("cart-count").textContent =
+          cartData.summary.itemCount;
+        document.getElementById("summary-subtotal").textContent =
+          cartData.summary.subtotal.toFixed(2) + " €";
+        document.getElementById("summary-shipping").textContent =
+          cartData.summary.shipping.toFixed(2) + " €";
+        document.getElementById("summary-total").textContent =
+          cartData.summary.total.toFixed(2) + " €";
+      }
+
+      // Actualizar cantidad
+      async function updateQuantity(productId, action) {
+        try {
+          const url = getApiUrl(CONFIG.ENDPOINTS.UPDATE_CART);
+          const response = await fetch(url, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            credentials: "include",
+            body: JSON.stringify({
+              product_id: productId,
+              action: action,
+            }),
+          });
+
+          const data = await response.json();
+
+          if (data.success) {
+            // Recargar carrito completo
+            await loadCart();
+          } else {
+            alert("Error al actualizar: " + data.error);
+          }
+        } catch (error) {
+          console.error("Error:", error);
+          alert("Error al actualizar el carrito");
         }
+      }
 
-        // Actualizar resumen
-        function updateSummary() {
-            if (!cartData) return;
-
-            document.getElementById('cart-count').textContent = cartData.summary.itemCount;
-            document.getElementById('summary-subtotal').textContent = cartData.summary.subtotal.toFixed(2) + ' €';
-            document.getElementById('summary-shipping').textContent = cartData.summary.shipping.toFixed(2) + ' €';
-            document.getElementById('summary-total').textContent = cartData.summary.total.toFixed(2) + ' €';
-        }
-
-        // Actualizar cantidad
-        async function updateQuantity(productId, action) {
-            try {
-                const url = getApiUrl(CONFIG.ENDPOINTS.UPDATE_CART);
-                const response = await fetch(url, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    credentials: 'include',
-                    body: JSON.stringify({
-                        product_id: productId,
-                        action: action
-                    })
-                });
-
-                const data = await response.json();
-
-                if (data.success) {
-                    // Recargar carrito completo
-                    await loadCart();
-                } else {
-                    alert('Error al actualizar: ' + data.error);
-                }
-            } catch (error) {
-                console.error('Error:', error);
-                alert('Error al actualizar el carrito');
-            }
-        }
-
-        // Inicializar
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', loadCart);
-        } else {
-            loadCart();
-        }
+      // Inicializar
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", loadCart);
+      } else {
+        loadCart();
+      }
     </script>
-</body>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../js/accessibilitat.js"></script>
+  </body>
 </html>

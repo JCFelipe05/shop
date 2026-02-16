@@ -1,113 +1,277 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Paracordial - Productos de Paracord</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Chivo:wght@300;400;600;700&display=swap" rel="stylesheet">
-</head>
-<body>
-    <header>
-        <nav class="navbar">
-            <div class="nav-container">
-                <div class="logo">
-                    <img src="assets/img/logo.png" alt="Paracordial">
-                </div>
-                <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-                <ul class="nav-menu" id="navMenu">
-                    <li><a href="#" class="active">Inicio</a></li>
-                    <li><a href="#">Productos</a></li>
-                    <li><a href="#">Acerca de</a></li>
-                    <li><a href="#">Contacto</a></li>
-                </ul>
-                <div class="nav-icons">
-                    <a href="#" id="login-link" class="icon">
-                        <img src="assets/icons/personal.png" alt="">
-                    </a>
-                    <a href="#" class="icon">
-                        <img src="assets/icons/buscar.png" alt="">
-                    </a>
-                    <a href="views/cart.html" class="icon">
-                        <img src="assets/icons/cart.png" alt="">
-                    </a>
-                </div>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Chivo:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/accesibilitat.css" />
+  </head>
+  <body>
+    <button
+      id="accessibility-toggle"
+      class="accessibility-toggle"
+      aria-label="Abrir menú de accessibilidad"
+    >
+      Accessibilidad
+    </button>
+
+    <!-- Panel lateral de accesibilidad -->
+    <aside
+      id="accessibility-panel"
+      class="accessibility-panel"
+      role="dialog"
+      aria-label="Menú de accesibilidad"
+      aria-hidden="true"
+    >
+      <div class="accessibility-header">
+        <h2>Opciones de Accessibilidad</h2>
+        <button id="close-panel" class="close-btn" aria-label="Tancar menú">
+          ×
+        </button>
+      </div>
+
+      <div class="accessibility-content">
+        <!-- Contraste -->
+        <section class="accessibility-section">
+          <h3>Contraste</h3>
+          <div class="button-group">
+            <button class="accessibility-btn" data-contrast="normal">
+              Normal
+            </button>
+            <button class="accessibility-btn" data-contrast="grayscale">
+              Escala de grises
+            </button>
+            <button class="accessibility-btn" data-contrast="dark">
+              Contraste oscuro
+            </button>
+            <button class="accessibility-btn" data-contrast="light">
+              Contraste claro
+            </button>
+            <button class="accessibility-btn" data-contrast="high-saturation">
+              Saturación alta
+            </button>
+            <button class="accessibility-btn" data-contrast="low-saturation">
+              Saturación baja
+            </button>
+          </div>
+        </section>
+
+        <!-- Tipografia -->
+        <section class="accessibility-section">
+          <h3>Tipografia</h3>
+
+          <!-- Medida de letra -->
+          <div class="control-group">
+            <label for="font-size">Medida de la letra:</label>
+            <div class="control-buttons">
+              <button
+                class="control-btn"
+                data-action="decrease"
+                data-target="font-size"
+                aria-label="Disminuir medida de letra"
+              >
+                -
+              </button>
+              <span id="font-size-value" class="value-display">1em</span>
+              <button
+                class="control-btn"
+                data-action="increase"
+                data-target="font-size"
+                aria-label="Aumentar medido de letra"
+              >
+                +
+              </button>
             </div>
-        </nav>
+          </div>
+
+          <!-- Espacio entre lineas -->
+          <div class="control-group">
+            <label for="line-height">Interlineado:</label>
+            <div class="control-buttons">
+              <button
+                class="control-btn"
+                data-action="decrease"
+                data-target="line-height"
+                aria-label="Disminuir interlineado"
+              >
+                -
+              </button>
+              <span id="line-height-value" class="value-display">1.5</span>
+              <button
+                class="control-btn"
+                data-action="increase"
+                data-target="line-height"
+                aria-label="Aumentar interlineado"
+              >
+                +
+              </button>
+            </div>
+          </div>
+
+          <!-- Espacio entre palabras -->
+          <div class="control-group">
+            <label for="word-spacing">Espacio entre palabras:</label>
+            <div class="control-buttons">
+              <button
+                class="control-btn"
+                data-action="decrease"
+                data-target="word-spacing"
+                aria-label="Disminuir espacio entre palabras"
+              >
+                -
+              </button>
+              <span id="word-spacing-value" class="value-display">0em</span>
+              <button
+                class="control-btn"
+                data-action="increase"
+                data-target="word-spacing"
+                aria-label="Aumentar espacio entre palabras"
+              >
+                +
+              </button>
+            </div>
+          </div>
+
+          <!-- Espacio entre letras -->
+          <div class="control-group">
+            <label for="letter-spacing">Espaiat entre lletres:</label>
+            <div class="control-buttons">
+              <button
+                class="control-btn"
+                data-action="decrease"
+                data-target="letter-spacing"
+                aria-label="Disminuir espacio entre letras"
+              >
+                -
+              </button>
+              <span id="letter-spacing-value" class="value-display">0em</span>
+              <button
+                class="control-btn"
+                data-action="increase"
+                data-target="letter-spacing"
+                aria-label="Aumentar espacio entre letras"
+              >
+                +
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Reset -->
+        <section class="accessibility-section">
+          <button id="reset-accessibility" class="reset-btn">
+            Resetear Accessibilitat
+          </button>
+        </section>
+      </div>
+    </aside>
+    <header>
+      <nav class="navbar">
+        <div class="nav-container">
+          <div class="logo">
+            <img src="assets/img/logo.png" alt="Paracordial" />
+          </div>
+          <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+          <ul class="nav-menu" id="navMenu">
+            <li><a href="#" class="active">Inicio</a></li>
+            <li><a href="#">Productos</a></li>
+            <li><a href="#">Acerca de</a></li>
+            <li><a href="#">Contacto</a></li>
+          </ul>
+          <div class="nav-icons">
+            <a href="#" id="login-link" class="icon">
+              <img src="assets/icons/personal.png" alt="" />
+            </a>
+            <a href="#" class="icon">
+              <img src="assets/icons/buscar.png" alt="" />
+            </a>
+            <a href="views/cart.html" class="icon">
+              <img src="assets/icons/cart.png" alt="" />
+            </a>
+          </div>
+        </div>
+      </nav>
     </header>
 
     <section class="hero">
-        <div class="hero-content">
-            <h1>Bienvenido a Paracordial</h1>
-            <p>Tu tienda de productos artesanales de Paracord</p>
-            <a href="#productos" class="btn btn-primary">Ver productos</a>
-        </div>
+      <div class="hero-content">
+        <h1>Bienvenido a Paracordial</h1>
+        <p>Tu tienda de productos artesanales de Paracord</p>
+        <a href="#productos" class="btn btn-primary">Ver productos</a>
+      </div>
     </section>
 
     <section class="featured-products" id="productos">
-        <div class="container">
-            <h2>Nuestros Productos</h2>
-            <div class="products-grid" id="products-grid"></div>
-        </div>
+      <div class="container">
+        <h2>Nuestros Productos</h2>
+        <div class="products-grid" id="products-grid"></div>
+      </div>
     </section>
 
     <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h4>Navegación</h4>
-                </div>
-                <div class="footer-section">
-                    <h4>Información</h4>
-                </div>
-                <div class="footer-section">
-                    <h4>Contacto</h4>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Paracordial. Todos los derechos reservados.</p>
-            </div>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h4>Navegación</h4>
+          </div>
+          <div class="footer-section">
+            <h4>Información</h4>
+          </div>
+          <div class="footer-section">
+            <h4>Contacto</h4>
+          </div>
         </div>
+        <div class="footer-bottom">
+          <p>&copy; 2025 Paracordial. Todos los derechos reservados.</p>
+        </div>
+      </div>
     </footer>
 
     <!-- Configuración -->
     <script src="js/config.js"></script>
-    
+
     <script>
-        // Menú móvil
-        document.getElementById('menuToggle')?.addEventListener('click', () => {
-            document.getElementById('navMenu')?.classList.toggle('active');
-        });
+      // Menú móvil
+      document.getElementById("menuToggle")?.addEventListener("click", () => {
+        document.getElementById("navMenu")?.classList.toggle("active");
+      });
 
-        // Link de login dinámico
-        document.getElementById('login-link').href = getPath(CONFIG.PATHS.LOGIN);
+      // Link de login dinámico
+      document.getElementById("login-link").href = getPath(CONFIG.PATHS.LOGIN);
 
-        // Cargar productos
-        async function loadProducts() {
-            const container = document.getElementById('products-grid');
-            
-            try {
-                const url = getApiUrl(CONFIG.ENDPOINTS.GET_PRODUCTS);
-                const response = await fetch(url, {
-                    credentials: 'include' // Importante para sesiones
-                });
-                const data = await response.json();
-                
-                if (data.success && data.products.length > 0) {
-                    container.innerHTML = data.products.map(p => `
+      // Cargar productos
+      async function loadProducts() {
+        const container = document.getElementById("products-grid");
+
+        try {
+          const url = getApiUrl(CONFIG.ENDPOINTS.GET_PRODUCTS);
+          const response = await fetch(url, {
+            credentials: "include", // Importante para sesiones
+          });
+          const data = await response.json();
+
+          if (data.success && data.products.length > 0) {
+            container.innerHTML = data.products
+              .map(
+                (p) => `
                         <article class="product-card">
                             <div class="product-image">
                                 <img src="${p.image}" alt="${p.name}">
                             </div>
                             <div class="product-info">
                                 <h3>${p.name}</h3>
-                                <p class="product-description">${p.description || 'Producto artesanal de paracord'}</p>
+                                <p class="product-description">${p.description || "Producto artesanal de paracord"}</p>
                                 <div class="product-footer">
                                     <span class="price">${p.price.toFixed(2)} €</span>
                                     <a href="views/product-detail.html?id=${p.id}">
@@ -116,22 +280,28 @@
                                 </div>
                             </div>
                         </article>
-                    `).join('');
-                } else {
-                    container.innerHTML = '<p style="text-align:center;padding:48px 16px;grid-column:1/-1;">No hay productos disponibles.</p>';
-                }
-            } catch (error) {
-                console.error('Error:', error);
-                container.innerHTML = '<p style="text-align:center;padding:48px 16px;grid-column:1/-1;color:#c62828;">Error al cargar productos. Verifica que el servidor esté disponible.</p>';
-            }
+                    `,
+              )
+              .join("");
+          } else {
+            container.innerHTML =
+              '<p style="text-align:center;padding:48px 16px;grid-column:1/-1;">No hay productos disponibles.</p>';
+          }
+        } catch (error) {
+          console.error("Error:", error);
+          container.innerHTML =
+            '<p style="text-align:center;padding:48px 16px;grid-column:1/-1;color:#c62828;">Error al cargar productos. Verifica que el servidor esté disponible.</p>';
         }
+      }
 
-        // Ejecutar al cargar la página
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', loadProducts);
-        } else {
-            loadProducts();
-        }
+      // Ejecutar al cargar la página
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", loadProducts);
+      } else {
+        loadProducts();
+      }
     </script>
-</body>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="js/accessibilitat.js"></script>
+  </body>
 </html>

@@ -30,6 +30,10 @@
             $_SESSION['username'] = $user['nombre'];
             $_SESSION['role'] = $user['tipo'];
 
+            $file = fopen('../../logs.txt', 'a');
+            fwrite($file, "ID Usuario: ". $_SESSION['user_id'] . " Nombre de usuario: " . $_SESSION['username'] . " Fecha: " . date('Y-m-d H:i:s') . "\n");
+            fclose($file);
+
             echo "¡Bienvenido " . htmlspecialchars($user['nombre']) . "!";
 
             if($_SESSION['role'] == 'admin'){

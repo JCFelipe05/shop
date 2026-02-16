@@ -1,154 +1,354 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/output.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Chivo:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/output.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Chivo:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/accesibilitat.css" />
     <title>Producto - Paracordial</title>
-</head>
-<body>
-    <header class="sticky top-0 z-1000">
-        <nav class="navbar py-4 px-0">
-            <div class="nav-container flex justify-between items-center py-0 px-4 relative">
-                <div class="logo w-auto">
-                    <img class="w-full h-auto block" src="../assets/img/logo.png" alt="Paracordial">
-                </div>
-                <button class="menu-toggle flex flex-col gap-1.25 bg-none cursor-pointer border-none p-2 z-1001" id="menuToggle" aria-label="Abrir menú">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-                <ul class="nav-menu fixed top-18 -left-full w-full py-6 px-0" id="navMenu">
-                    <li><a href="../index.html">Inicio</a></li>
-                    <li><a href="#">Productos</a></li>
-                    <li><a href="#">Acerca de</a></li>
-                    <li><a href="#">Contacto</a></li>
-                </ul>
-                <div class="nav-icons flex items-center gap-4">
-                    <a href="#" class="icon">
-                        <img src="../assets/icons/personal.png" alt="">
-                    </a>
-                    <a href="#" class="icon">
-                        <img src="../assets/icons/buscar.png" alt="">
-                    </a>
-                    <a href="cart.html" class="icon">
-                        <img src="../assets/icons/cart.png" alt="">
-                    </a>
-                </div>
+  </head>
+  <body>
+    <button
+      id="accessibility-toggle"
+      class="accessibility-toggle"
+      aria-label="Abrir menú de accessibilidad"
+    >
+      Accessibilidad
+    </button>
+
+    <!-- Panel lateral de accesibilidad -->
+    <aside
+      id="accessibility-panel"
+      class="accessibility-panel"
+      role="dialog"
+      aria-label="Menú de accesibilidad"
+      aria-hidden="true"
+    >
+      <div class="accessibility-header">
+        <h2>Opciones de Accessibilidad</h2>
+        <button id="close-panel" class="close-btn" aria-label="Tancar menú">
+          ×
+        </button>
+      </div>
+
+      <div class="accessibility-content">
+        <!-- Contraste -->
+        <section class="accessibility-section">
+          <h3>Contraste</h3>
+          <div class="button-group">
+            <button class="accessibility-btn" data-contrast="normal">
+              Normal
+            </button>
+            <button class="accessibility-btn" data-contrast="grayscale">
+              Escala de grises
+            </button>
+            <button class="accessibility-btn" data-contrast="dark">
+              Contraste oscuro
+            </button>
+            <button class="accessibility-btn" data-contrast="light">
+              Contraste claro
+            </button>
+            <button class="accessibility-btn" data-contrast="high-saturation">
+              Saturación alta
+            </button>
+            <button class="accessibility-btn" data-contrast="low-saturation">
+              Saturación baja
+            </button>
+          </div>
+        </section>
+
+        <!-- Tipografia -->
+        <section class="accessibility-section">
+          <h3>Tipografia</h3>
+
+          <!-- Medida de letra -->
+          <div class="control-group">
+            <label for="font-size">Medida de la letra:</label>
+            <div class="control-buttons">
+              <button
+                class="control-btn"
+                data-action="decrease"
+                data-target="font-size"
+                aria-label="Disminuir medida de letra"
+              >
+                -
+              </button>
+              <span id="font-size-value" class="value-display">1em</span>
+              <button
+                class="control-btn"
+                data-action="increase"
+                data-target="font-size"
+                aria-label="Aumentar medido de letra"
+              >
+                +
+              </button>
             </div>
-        </nav>
+          </div>
+
+          <!-- Espacio entre lineas -->
+          <div class="control-group">
+            <label for="line-height">Interlineado:</label>
+            <div class="control-buttons">
+              <button
+                class="control-btn"
+                data-action="decrease"
+                data-target="line-height"
+                aria-label="Disminuir interlineado"
+              >
+                -
+              </button>
+              <span id="line-height-value" class="value-display">1.5</span>
+              <button
+                class="control-btn"
+                data-action="increase"
+                data-target="line-height"
+                aria-label="Aumentar interlineado"
+              >
+                +
+              </button>
+            </div>
+          </div>
+
+          <!-- Espacio entre palabras -->
+          <div class="control-group">
+            <label for="word-spacing">Espacio entre palabras:</label>
+            <div class="control-buttons">
+              <button
+                class="control-btn"
+                data-action="decrease"
+                data-target="word-spacing"
+                aria-label="Disminuir espacio entre palabras"
+              >
+                -
+              </button>
+              <span id="word-spacing-value" class="value-display">0em</span>
+              <button
+                class="control-btn"
+                data-action="increase"
+                data-target="word-spacing"
+                aria-label="Aumentar espacio entre palabras"
+              >
+                +
+              </button>
+            </div>
+          </div>
+
+          <!-- Espacio entre letras -->
+          <div class="control-group">
+            <label for="letter-spacing">Espaiat entre lletres:</label>
+            <div class="control-buttons">
+              <button
+                class="control-btn"
+                data-action="decrease"
+                data-target="letter-spacing"
+                aria-label="Disminuir espacio entre letras"
+              >
+                -
+              </button>
+              <span id="letter-spacing-value" class="value-display">0em</span>
+              <button
+                class="control-btn"
+                data-action="increase"
+                data-target="letter-spacing"
+                aria-label="Aumentar espacio entre letras"
+              >
+                +
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Reset -->
+        <section class="accessibility-section">
+          <button id="reset-accessibility" class="reset-btn">
+            Resetear Accessibilitat
+          </button>
+        </section>
+      </div>
+    </aside>
+    <header class="sticky top-0 z-1000">
+      <nav class="navbar py-4 px-0">
+        <div
+          class="nav-container flex justify-between items-center py-0 px-4 relative"
+        >
+          <div class="logo w-auto">
+            <img
+              class="w-full h-auto block"
+              src="../assets/img/logo.png"
+              alt="Paracordial"
+            />
+          </div>
+          <button
+            class="menu-toggle flex flex-col gap-1.25 bg-none cursor-pointer border-none p-2 z-1001"
+            id="menuToggle"
+            aria-label="Abrir menú"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+          <ul
+            class="nav-menu fixed top-18 -left-full w-full py-6 px-0"
+            id="navMenu"
+          >
+            <li><a href="../index.html">Inicio</a></li>
+            <li><a href="#">Productos</a></li>
+            <li><a href="#">Acerca de</a></li>
+            <li><a href="#">Contacto</a></li>
+          </ul>
+          <div class="nav-icons flex items-center gap-4">
+            <a href="#" class="icon">
+              <img src="../assets/icons/personal.png" alt="" />
+            </a>
+            <a href="#" class="icon">
+              <img src="../assets/icons/buscar.png" alt="" />
+            </a>
+            <a href="cart.html" class="icon">
+              <img src="../assets/icons/cart.png" alt="" />
+            </a>
+          </div>
+        </div>
+      </nav>
     </header>
 
     <main class="flex items-center justify-center">
-        <div class="body-container w-9/10 flex flex-col items-center justify-center mt-5 md:flex-row md:justify-between md:bg-[#507335] md:border md:rounded-4xl">
-            <img id="product-image" src="" alt="" class="w-full h-auto rounded-4xl md:mr-4">
+      <div
+        class="body-container w-9/10 flex flex-col items-center justify-center mt-5 md:flex-row md:justify-between md:bg-[#507335] md:border md:rounded-4xl"
+      >
+        <img
+          id="product-image"
+          src=""
+          alt=""
+          class="w-full h-auto rounded-4xl md:mr-4"
+        />
 
-            <div class="desc flex-col items-center md:mr-4">
-                <div class="desc-title w-9/10">
-                    <h1 id="product-name">Cargando...</h1>
-                </div>
-                <div class="desc-text border-b border-t">
-                    <p id="product-description">Cargando descripción...</p>
-                </div>
-            </div>
-            
-            <div class="info py-1.5 px-2.5 mt-2.5 w-9/10 flex flex-col items-center justify-center rounded-2xl md:h-full md:mr-4">
-                <p class="w-full">Precio: <span id="product-price">-</span>€</p>
-                <p class="w-full">Color: <span id="product-color">-</span></p>
-                <p class="w-full">Medida: <span id="product-size">-</span></p>
-                <button class="boton w-28 p-1 rounded-2xl border border-green-950 cursor-pointer" id="add-to-cart">
-                    Añadir al carrito
-                </button>
-            </div>
+        <div class="desc flex-col items-center md:mr-4">
+          <div class="desc-title w-9/10">
+            <h1 id="product-name">Cargando...</h1>
+          </div>
+          <div class="desc-text border-b border-t">
+            <p id="product-description">Cargando descripción...</p>
+          </div>
         </div>
+
+        <div
+          class="info py-1.5 px-2.5 mt-2.5 w-9/10 flex flex-col items-center justify-center rounded-2xl md:h-full md:mr-4"
+        >
+          <p class="w-full">Precio: <span id="product-price">-</span>€</p>
+          <p class="w-full">Color: <span id="product-color">-</span></p>
+          <p class="w-full">Medida: <span id="product-size">-</span></p>
+          <button
+            class="boton w-28 p-1 rounded-2xl border border-green-950 cursor-pointer"
+            id="add-to-cart"
+          >
+            Añadir al carrito
+          </button>
+        </div>
+      </div>
     </main>
 
     <footer class="pt-12 px-0 pb-6 mt-12 mb-0">
-        <div class="container w-full max-w-[1200px] my-0 mx-auto py-0 px-4">
-            <div class="footer-content flex items-center justify-between">
-                <div class="footer-section">
-                    <h4>Navegación</h4>
-                </div>
-                <div class="footer-section">
-                    <h4>Información</h4>
-                </div>
-                <div class="footer-section">
-                    <h4>Contacto</h4>
-                </div>
-            </div>
-            <div class="footer-bottom text-center pt-6 text-sm backdrop-opacity-80">
-                <p>&copy; 2025 Paracordial. Todos los derechos reservados.</p>
-            </div>
+      <div class="container w-full max-w-[1200px] my-0 mx-auto py-0 px-4">
+        <div class="footer-content flex items-center justify-between">
+          <div class="footer-section">
+            <h4>Navegación</h4>
+          </div>
+          <div class="footer-section">
+            <h4>Información</h4>
+          </div>
+          <div class="footer-section">
+            <h4>Contacto</h4>
+          </div>
         </div>
+        <div class="footer-bottom text-center pt-6 text-sm backdrop-opacity-80">
+          <p>&copy; 2025 Paracordial. Todos los derechos reservados.</p>
+        </div>
+      </div>
     </footer>
 
     <!-- Configuración -->
     <script src="../js/config.js"></script>
 
     <script>
-        // Menú móvil
-        document.getElementById('menuToggle')?.addEventListener('click', () => {
-            document.getElementById('navMenu')?.classList.toggle('active');
-        });
+      // Menú móvil
+      document.getElementById("menuToggle")?.addEventListener("click", () => {
+        document.getElementById("navMenu")?.classList.toggle("active");
+      });
 
-        // Obtener ID del producto de la URL
-        const urlParams = new URLSearchParams(window.location.search);
-        const productId = urlParams.get('id');
+      // Obtener ID del producto de la URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const productId = urlParams.get("id");
 
-        // Cargar datos del producto
-        async function loadProductDetail() {
-            if (!productId) {
-                alert('No se especificó un producto');
-                window.location.href = '../index.html';
-                return;
-            }
-
-            try {
-                const url = getApiUrl(CONFIG.ENDPOINTS.GET_PRODUCT) + `?id=${productId}`;
-                const response = await fetch(url, {
-                    credentials: 'include'
-                });
-                const data = await response.json();
-
-                if (data.success && data.product) {
-                    const product = data.product;
-                    
-                    // Actualizar elementos del DOM
-                    document.getElementById('product-name').textContent = product.name;
-                    document.getElementById('product-description').textContent = product.description || 'Producto artesanal de paracord de alta calidad.';
-                    document.getElementById('product-price').textContent = product.price.toFixed(2);
-                    document.getElementById('product-color').textContent = product.color || 'Varios';
-                    document.getElementById('product-size').textContent = product.size || 'Estándar';
-                    document.getElementById('product-image').src = product.image;
-                    document.getElementById('product-image').alt = product.name;
-                    
-                    // Actualizar título de la página
-                    document.title = `${product.name} - Paracordial`;
-                    
-                    // Botón de añadir al carrito
-                    document.getElementById('add-to-cart').addEventListener('click', () => {
-                        const addToCartUrl = getApiUrl(CONFIG.ENDPOINTS.ADD_TO_CART) + `?id=${product.id}`;
-                        window.location.href = addToCartUrl;
-                    });
-                } else {
-                    alert('Producto no encontrado');
-                    window.location.href = '../index.html';
-                }
-            } catch (error) {
-                console.error('Error:', error);
-                alert('Error al cargar el producto. Verifica que el servidor esté disponible.');
-            }
+      // Cargar datos del producto
+      async function loadProductDetail() {
+        if (!productId) {
+          alert("No se especificó un producto");
+          window.location.href = "../index.html";
+          return;
         }
 
-        // Ejecutar al cargar la página
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', loadProductDetail);
-        } else {
-            loadProductDetail();
+        try {
+          const url =
+            getApiUrl(CONFIG.ENDPOINTS.GET_PRODUCT) + `?id=${productId}`;
+          const response = await fetch(url, {
+            credentials: "include",
+          });
+          const data = await response.json();
+
+          if (data.success && data.product) {
+            const product = data.product;
+
+            // Actualizar elementos del DOM
+            document.getElementById("product-name").textContent = product.name;
+            document.getElementById("product-description").textContent =
+              product.description ||
+              "Producto artesanal de paracord de alta calidad.";
+            document.getElementById("product-price").textContent =
+              product.price.toFixed(2);
+            document.getElementById("product-color").textContent =
+              product.color || "Varios";
+            document.getElementById("product-size").textContent =
+              product.size || "Estándar";
+            document.getElementById("product-image").src = product.image;
+            document.getElementById("product-image").alt = product.name;
+
+            // Actualizar título de la página
+            document.title = `${product.name} - Paracordial`;
+
+            // Botón de añadir al carrito
+            document
+              .getElementById("add-to-cart")
+              .addEventListener("click", () => {
+                const addToCartUrl =
+                  getApiUrl(CONFIG.ENDPOINTS.ADD_TO_CART) + `?id=${product.id}`;
+                window.location.href = addToCartUrl;
+              });
+          } else {
+            alert("Producto no encontrado");
+            window.location.href = "../index.html";
+          }
+        } catch (error) {
+          console.error("Error:", error);
+          alert(
+            "Error al cargar el producto. Verifica que el servidor esté disponible.",
+          );
         }
+      }
+
+      // Ejecutar al cargar la página
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", loadProductDetail);
+      } else {
+        loadProductDetail();
+      }
     </script>
-</body>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../js/accessibilitat.js"></script>
+  </body>
 </html>

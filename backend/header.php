@@ -29,6 +29,8 @@
                 <li><a href="/student008/shop/backend/cart.php" class="nav-link">Carrito</a></li>
                 <li><a href="/student008/shop/backend/forms/form_contact.php" class="nav-link">Contacto</a></li>
                 <li><a href="/student008/shop/backend/logout.php" class="nav-link">Logout</a></li>
+                <li><a href="/student008/shop/backend/api/api_get_products_stefan.php" class="nav-link">Recibir productos supplier</a></li>
+                <li><a href="/student008/shop/backend/pie_chart.php" class="nav-link">Charts</a></li>
             </ul>
         </div>
     </nav>

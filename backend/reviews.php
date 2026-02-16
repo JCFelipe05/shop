@@ -173,16 +173,16 @@ while ($row = mysqli_fetch_assoc($result_stats)) {
             <div class="form-group">
                 <label>Valoración:</label>
                 <div class="rating-input">
-                    <input type="radio" name="valoracion" value="5" id="star5" required>
-                    <label for="star5">★</label>
-                    <input type="radio" name="valoracion" value="4" id="star4">
-                    <label for="star4">★</label>
-                    <input type="radio" name="valoracion" value="3" id="star3">
-                    <label for="star3">★</label>
+                    <input type="radio" name="valoracion" value="1" id="star1" required>
+                    <label for="star1">★</label>
                     <input type="radio" name="valoracion" value="2" id="star2">
                     <label for="star2">★</label>
-                    <input type="radio" name="valoracion" value="1" id="star1">
-                    <label for="star1">★</label>
+                    <input type="radio" name="valoracion" value="3" id="star3">
+                    <label for="star3">★</label>
+                    <input type="radio" name="valoracion" value="4" id="star4">
+                    <label for="star4">★</label>
+                    <input type="radio" name="valoracion" value="5" id="star5">
+                    <label for="star5">★</label>
                 </div>
             </div>
             
@@ -216,7 +216,7 @@ while ($row = mysqli_fetch_assoc($result_stats)) {
             $producto_stats = isset($stats[$review['id_producto']]) ? $stats[$review['id_producto']] : null;
         ?>
         
-        <div class="review-container <?= $is_own_review ? 'own-review' : '' ?>">
+        <br class="review-container <?= $is_own_review ? 'own-review' : '' ?>">
             <div class="review-header">
                 <div>
                     <div class="review-product">
@@ -255,6 +255,7 @@ while ($row = mysqli_fetch_assoc($result_stats)) {
                     con una valoración promedio de <?= $producto_stats['promedio'] ?>
                 </div>
             <?php endif; ?>
+            </br>
         </div>
         
     <?php endforeach; ?>
